@@ -1,0 +1,89 @@
+/**
+ * levainhq.com — product-specific additions
+ *
+ * The estate design system (tokens.css + site.css) is shared verbatim with
+ * phillipclapham.com so the two surfaces read as unmistakably kin — same
+ * palette, same type scale, same kintsugi seams, same claim|receipt grid.
+ * This file adds only what a product site needs and a personal site does not.
+ *
+ * Deliberately NOT copied from phillipclapham.com: the cognitive-pulse field.
+ * That animation is the person's hero, not the product's. Sharing the system
+ * is the point; sharing the centrepiece would make one surface a clone of the
+ * other rather than kin.
+ */
+
+/* ---- Code. Receipts are set in mono elsewhere in the system; these are
+        the one place the reader is expected to copy something out. ---- */
+
+pre.code {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  line-height: 1.75;
+  background: var(--bg-inset);
+  border-left: 2px solid var(--patina-deep);
+  padding: var(--s-4) var(--s-6);
+  margin: 0 0 var(--s-6);
+  overflow-x: auto;
+  max-width: var(--measure);
+}
+
+pre.code code {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  padding: 0;
+  color: var(--text);
+}
+
+/* Inline code: patina, because inline code on this page is naming a real
+   symbol or flag — the evidence register, same as .receipt and .card-meta. */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  color: var(--patina-bright);
+}
+
+.receipt code {
+  color: inherit;
+}
+
+/* ---- The hero carries no field layer here, so it needs its own top air ---- */
+.hero-band {
+  padding-top: var(--s-16);
+}
+
+/* ---- Prose blocks inside product sections keep the reading measure ---- */
+.prose {
+  max-width: var(--measure);
+  margin: 0 0 var(--s-6);
+}
+
+/* ---- A quoted design decision, pulled out of the prose. Gold, because it
+        is a claim about the system, not a receipt about it. ---- */
+.pull-quote {
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  line-height: var(--leading-snug);
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: var(--s-6);
+  margin: var(--s-8) 0;
+  max-width: var(--measure);
+}
+
+.pull-quote em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 40rem) {
+  pre.code {
+    font-size: var(--t-xs);
+    padding: var(--s-3) var(--s-4);
+  }
+  .pull-quote {
+    font-size: var(--t-md);
+  }
+}

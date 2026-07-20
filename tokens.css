@@ -1,0 +1,122 @@
+/**
+ * Clapham Estate — Design Tokens
+ *
+ * One owned system, shared across phillipclapham.com (the person) and
+ * levainhq.com (the product), so the two surfaces read as unmistakably kin.
+ * This replaces protocol-memory.css, which was inherited from an archived
+ * product and whose palette was Tailwind's defaults in custom-property
+ * clothing.
+ *
+ * RATIONALE — every value here is derived from the subject, not chosen by
+ * taste:
+ *
+ * COLOR. Two opposed accents mediated by a neutral, which is Phill's own
+ * bedrock architecture: CYCLES <-> BALANCE <-> OPPOSITES. The warm pole is
+ * kintsugi gold (breaks shape the work — the elbow, the constraint-as-design-
+ * material principle, and the accent nemooperans.com already earned and
+ * rationalized). The cool pole is verdigris, copper's oxidation. Both poles
+ * are what happens to metal under time and damage: repair and patina. The
+ * ground is a warm near-black, not the blue-black of every dev portfolio.
+ *
+ * TYPE. Inverted from the convention: grotesque display, serif body. Every
+ * engineer's site is sans-on-sans; a text serif signals there is real reading
+ * here, which is true — the depth pillar is a 25,000-word paper. Bricolage
+ * Grotesque is a deliberately imperfect grotesque with a width axis, which is
+ * kintsugi at the typographic level. IBM Plex Mono carries receipts: versions,
+ * hashes, DOIs, counts. Engineering face for engineering facts.
+ *
+ * SEAMS. Sections are joined by gold hairlines, not numbered 01/02/03. The
+ * numbering implied a sequence the content does not have. A kintsugi seam is
+ * true to the subject and encodes the join instead of decorating it.
+ */
+
+:root {
+  /* ---- Ground: warm near-black. Walnut and amp-grille, not slate. ---- */
+  --ink-900: #100e0b;
+  --ink-800: #171410;
+  --ink-700: #201b15;
+  --ink-600: #2c251c;
+
+  /* ---- Text on ground ---- */
+  --bone: #efe7d8;
+  --bone-dim: #a79c89;
+  --bone-faint: #6f6759;
+
+  /* ---- The warm pole: kintsugi. Repair as ornament. ---- */
+  --gold: #c9a961;
+  --gold-bright: #e3c77e;
+  --gold-deep: #8a713a;
+
+  /* ---- The cool pole: verdigris. Time on copper. ---- */
+  --patina: #4a8a78;
+  --patina-bright: #6bb39d;
+  --patina-deep: #2f5a4e;
+
+  /* ---- Light mode ground ---- */
+  --paper: #f4efe4;
+  --paper-alt: #e9e1d2;
+
+  /* ---- Semantic ---- */
+  --bg: var(--ink-900);
+  --bg-raised: var(--ink-800);
+  --bg-inset: var(--ink-700);
+  --text: var(--bone);
+  --text-dim: var(--bone-dim);
+  --text-faint: var(--bone-faint);
+  --accent: var(--gold);
+  --accent-alt: var(--patina);
+  --rule: rgba(201, 169, 97, 0.22);
+
+  /* ---- Type ---- */
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", sans-serif;
+  --font-body: "Literata", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Modular scale, 1.25 ratio, 17px base. Body is set large on purpose:
+     this site is meant to be read, not scanned. */
+  --t-xs: 0.75rem;
+  --t-sm: 0.875rem;
+  --t-base: 1.0625rem;
+  --t-md: 1.25rem;
+  --t-lg: 1.5625rem;
+  --t-xl: 1.953rem;
+  --t-2xl: 2.441rem;
+  --t-3xl: 3.052rem;
+  --t-4xl: 4.2rem;
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.3;
+  --leading-body: 1.62;
+
+  /* ---- Space: 4px base, geometric ---- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-24: 6rem;
+  --s-32: 8rem;
+
+  /* ---- Measure ---- */
+  --measure: 62ch;
+  --container: 76rem;
+  --container-narrow: 44rem;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+:root:not([data-theme="dark"]) {
+  --bg: var(--paper);
+  --bg-raised: var(--paper-alt);
+  --bg-inset: #ded4c1;
+  --text: #17130e;
+  --text-dim: #5c5347;
+  --text-faint: #8b8172;
+  --gold: #8a713a;
+  --accent: #8a713a;
+  --accent-alt: #2f5a4e;
+  --rule: rgba(138, 113, 58, 0.28);
+}

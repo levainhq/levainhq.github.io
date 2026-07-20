@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Levain | Portable cognitive-partnership memory and methodology</title>
+    <meta
+      name="description"
+      content="Levain is a portable cognitive-partnership memory and methodology kit. Ship the seed that grows a practice, not the grown practice. Memory that persists across sessions and stays on your machine, in a store you can read, inspect and edit from outside any session."
+    />
+    <meta name="author" content="Phillip Clapham" />
+    <meta name="theme-color" content="#100e0b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://levainhq.com" />
+    <meta property="og:title" content="Levain | Ship the seed, not the fossil" />
+    <meta
+      property="og:description"
+      content="Portable cognitive-partnership memory and methodology. Sovereignty enforced by the import graph, not asserted in prose. Apache-2.0, on your machine."
+    />
+    <!-- twitter:card is deliberately `summary`, not `summary_large_image`:
+         no og:image exists yet, and declaring a large-image card without one
+         renders as a broken unfurl. Upgrade both together. -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Levain | Ship the seed, not the fossil" />
+    <meta
+      name="twitter:description"
+      content="Portable cognitive-partnership memory and methodology. Sovereignty enforced by the import graph, not asserted in prose."
+    />
+
+    <script>
+      // Applied before paint to prevent a flash of the wrong theme.
+      (function () {
+        if (localStorage.getItem("theme-preference") === "light") {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,300..600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="levain.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-mark" href="/">Levain</a>
+        <div class="nav-links">
+          <a href="#install">Install</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#boundaries">Boundaries</a>
+          <a href="https://github.com/levainhq/levain" target="_blank" rel="noopener">GitHub</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme">light</button>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <div class="hero-band">
+        <div class="wrap">
+          <section class="hero">
+            <div>
+              <p class="eyebrow">Cognitive-partnership infrastructure</p>
+              <h1 class="wordmark">Levain</h1>
+              <p class="hero-claim">
+                Ship the seed, not the <em>fossil</em>.
+              </p>
+              <p class="hero-sub">
+                A grown cognitive-partnership methodology can't be shipped as a
+                methodology. Hand someone the finished artifact and they get a
+                fossil. So Levain ships the engine that grows one — a memory
+                substrate you own, a methodology seed, an activation layer that
+                fires on its own, and a scripted onboarding. Your practice
+                accretes from your own sessions, which is why it sticks, and why
+                it's yours.
+              </p>
+              <p class="hero-links">
+                <a href="#install">Install it</a>
+                <a href="#architecture">Read the architecture</a>
+                <a href="https://github.com/levainhq/levain" target="_blank" rel="noopener">Source</a>
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <hr class="seam" />
+
+      <!-- Claim | Receipt. Every assertion carries its verification. -->
+      <div class="wrap">
+        <section class="section" id="ledger" aria-label="Claims and their receipts">
+          <div class="ledger-head"><span>Claim</span><span>Receipt</span></div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">Sovereignty is a property of the import graph.</p>
+              <p class="row-note">
+                The firing tier — everything that lets an open model act as a
+                sovereign entity — imports nothing from the rest of the package.
+                Not by convention, not by review discipline. It physically
+                cannot reach back into the kit, which is what makes it
+                harness-neutral rather than merely described that way.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Structural</span>
+              <b>levain/firing/ &rarr; zero outward edges</b><br />
+              <span class="stat-value">15</span> modules · 4,608 lines<br />
+              only <code>run.py</code> and <code>wrap.py</code> import inward<br />
+              <a href="https://github.com/levainhq/levain/tree/main/levain/firing" target="_blank" rel="noopener">read the tier</a>
+            </p>
+          </div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">A practice transfers as a living starter or not at all.</p>
+              <p class="row-note">
+                The proof isn't the endpoint, it's the trajectory. One continuity
+                file rendered at four points across five calendar months: it grew,
+                hit one architectural cliff, then locked into a shape and kept
+                densifying inside it. Your week one looks like the first
+                snapshot — not the last, which is what this operator's partnership
+                grew into.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Accrual</span>
+              <b>96 &rarr; 549 lines, 6 &rarr; 9 sections</b><br />
+              four snapshots over five months<br />
+              <a href="https://github.com/levainhq/levain/blob/main/examples/accrual/growth_timeline.md" target="_blank" rel="noopener">growth_timeline.md</a>
+            </p>
+          </div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">It runs on your machine or it doesn't run.</p>
+              <p class="row-note">
+                The store is a local SQLite file. The browser view binds loopback
+                only and refuses non-loopback hosts. It serves its own UI from the
+                package, so it renders offline with no CDN. No vendor host, no
+                account, nothing to revoke.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Shipped</span>
+              <b>Levain v0.3.13</b><br />
+              <span class="stat-value">1,702</span> tests passing · Apache-2.0<br />
+              built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> (pinned &ge;0.9.6,&lt;0.10)<br />
+              <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a>
+            </p>
+          </div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">Nothing reaches long-term memory except through a path you govern.</p>
+              <p class="row-note">
+                Every write goes through one governed dispatch that records it, so
+                the writable view doubles as an audit log of what you did. The
+                edit-class and zone grammar is enforced at the surface, not
+                requested politely: read-only regions refuse edits rather than
+                trusting a caller not to try.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Governed</span>
+              <b>one write path, one audit envelope</b><br />
+              zones <code>identity</code> / <code>operate</code> / <code>mind</code><br />
+              edit classes <code>A</code> / <code>B</code> / <code>C</code><br />
+              extensions ride the same auth, confirm and audit envelope
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="architecture">
+          <h2 class="section-title">What's actually in the wheel</h2>
+          <p class="section-sub">Three products, one install</p>
+          <p class="map-lede">
+            Levain is usually described as a kit, which is true and incomplete.
+            It ships three distinct things that share a substrate. The third has
+            been in the wheel for a while without a public description; this is it.
+          </p>
+
+          <div class="card-grid">
+            <article class="card">
+              <h3>The kit</h3>
+              <p>
+                A memory substrate you own, a methodology-core seed, an
+                activation layer wired through your harness's hooks, and a
+                scripted onboarding that fills the seed so your partner is
+                uniquely yours from session one.
+              </p>
+              <p class="card-meta">levain init · seed · adapters · hooks</p>
+            </article>
+
+            <article class="card">
+              <h3>The operator surface</h3>
+              <p>
+                Your partner's memory normally only exists inside a session.
+                These look at it from outside, and let you steer it: a terminal
+                glance, a full-screen TUI, and a live loopback browser view that
+                turns writable with one flag.
+              </p>
+              <p class="card-meta">dashboard · tui · serve · focus</p>
+            </article>
+
+            <article class="card">
+              <h3>The sovereign entity runtime</h3>
+              <p>
+                An entity REPL on an open model, and a human-gated consolidate
+                where the command invocation <em>is</em> the gate the autonomous
+                loop may never trip itself. Underneath sits the firing tier: the
+                harness-neutral contract, the presence seam, the isolation guard,
+                and the confinement floor.
+              </p>
+              <p class="card-meta">run · wrap · levain/firing/</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="floor">
+          <h2 class="section-title">The confinement floor</h2>
+          <p class="section-sub">The polarity is inverted on purpose</p>
+
+          <p class="prose">
+            A sandbox for a coding agent is normally a jail: deny by default,
+            then allow the workspace. That shape is wrong for an entity that is
+            supposed to do real work on a real machine — it spends its life
+            fighting the cage, and every escape hatch you cut weakens the whole
+            thing.
+          </p>
+
+          <p class="pull-quote">
+            The step-6 file jail was <em>(deny default) &rarr; allow the
+            workspace</em> — a JAIL. A replacement inverts it: <em>(allow
+            default) &rarr; DENY the crown jewels.</em>
+          </p>
+
+          <p class="prose">
+            So the floor allows by default and denies a small, explicit,
+            absolute-path-pinned set: the sovereignty crown jewels. The entity
+            works like any normal shell, and the handful of things that must
+            never be readable or writable are structurally out of reach no
+            matter what the model is told. The module is pure standard library
+            and imports nothing else in the package, so the floor is unit-testable
+            in complete isolation from the thing it protects.
+          </p>
+
+          <div class="rundown">
+            <div class="rundown-item">
+              <p>Largest module in the package, and the most load-bearing.</p>
+              <p class="rundown-meta">confinement.py · 1,421 lines · pure stdlib</p>
+            </div>
+            <div class="rundown-item">
+              <p>Denies by absolute path, so a relative-path trick can't walk out of it.</p>
+              <p class="rundown-meta">ancestor-write-deny · hardlink-aware</p>
+            </div>
+            <div class="rundown-item">
+              <p>Credential stores are opt-in, not always-on: denying their read breaks the entity's own tooling, and operational fit beats purity.</p>
+              <p class="rundown-meta">deny_standard_creds · default off</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="boundaries">
+          <h2 class="section-title">Boundaries, kept honest</h2>
+          <p class="section-sub">What it does not do yet</p>
+          <p class="map-lede">
+            A floor that oversells itself is worse than no floor, because you
+            plan around the coverage you think you have. These limits are
+            recorded in the source itself, not just here.
+          </p>
+
+          <div class="rundown">
+            <div class="rundown-item">
+              <p>
+                <b>The automation-threshold membrane is a specification, not
+                code.</b> The floor protects the crown jewels and nothing else.
+                With default-allow and no membrane, a confabulating model can
+                still destroy a real repository, force-push, or pipe a download
+                into a shell — none of which the floor stops. So v1 is a
+                structural floor plus you in the loop, and unattended operation
+                is explicitly not a v1 claim.
+              </p>
+              <p class="rundown-meta">stated verbatim in shipped source</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>Harnesses:</b> Claude Code and Codex CLI. One adapter per
+                install — two installs if you need both.
+              </p>
+              <p class="rundown-meta">adapters/claude-code · adapters/codex</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>Always-on daemon:</b> macOS today. Linux
+                <code>systemd --user</code> and Windows Task Scheduler are
+                planned, not shipped.
+              </p>
+              <p class="rundown-meta">launchd user agent · no root</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>Codex hook reliability:</b> recent Codex versions have a
+                platform-level hook-trust gap no consumer can work around.
+                <code>levain verify-hooks</code> proves your scripts fire
+                correctly by invoking each one with the JSON a harness would
+                send; whether Codex itself invokes them at runtime is up to Codex.
+              </p>
+              <p class="rundown-meta">verify-hooks · doctor --invoke</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="install">
+          <h2 class="section-title">Install</h2>
+          <p class="section-sub">Two commands to a working partner</p>
+
+          <pre class="code"><code>pip install levain
+levain init --path ./my-partner</code></pre>
+
+          <p class="prose">
+            That creates the directory, runs the interview, lays down the seed,
+            registers the adapter you choose, initializes the store at
+            <code>.levain/memory.db</code>, and records the exact version set it
+            composed. Then open that directory with Claude Code or Codex and
+            start working.
+          </p>
+
+          <pre class="code"><code>levain init --web                    # browser form instead of the terminal interview
+levain doctor                        # loud, in-environment health check
+levain update                        # reconcile the whole stack to known-good
+levain serve                         # live loopback view of your substrate
+levain serve --write                 # ...and steer it, through the governed path</code></pre>
+
+          <p class="prose">
+            Levain composes a stack across two version lines that
+            <code>pip</code> alone can't keep aligned: the library, versioned on
+            PyPI, and your methodology seed, versioned inside Levain.
+            <code>pip</code> keeps the library compatible but is blind to
+            methodology drift — a new memory feature can land as a contradiction
+            with your older, hand-tuned instructions instead of a clean addition.
+            That drift is what breaks a long-running install, so
+            <code>doctor</code> and <code>update</code> exist to hold the set
+            together.
+          </p>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="build-on-it">
+          <h2 class="section-title">Build on it</h2>
+          <p class="section-sub">One published seam</p>
+          <p class="prose">
+            Writing your own surface over the substrate?
+            <code>levain.kernel</code> is the published seam: the data model, the
+            terminal and web drivers, and the governed write and action dispatch.
+            Import one namespace instead of reaching into internals. Register
+            extra read-only panels or extra governed verbs and they ride the same
+            auth, confirm and audit envelope as the built-in edits. It's a pure
+            re-export — the governance lives in the substrate, not the surface.
+          </p>
+          <p class="card-meta">14 exported names · levain.kernel</p>
+
+          <p class="prose">
+            The division of labour with the substrate is the whole idea:
+            <b>anneal-memory is the substrate; Levain is the harness that fires
+            it.</b> anneal-memory deliberately can't reach into your session — a
+            memory library that hooked every prompt would forfeit the neutrality
+            that lets it run under any harness. So on its own it gives you the
+            stores and manual recall, and Levain wires the hooks that surface the
+            right memory automatically. Clean dependency direction, both on PyPI:
+            Levain depends on anneal-memory, never the reverse.
+          </p>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="audience">
+          <h2 class="section-title">Who it's for</h2>
+          <p class="prose">
+            Operator-class developers: the people who already feel session
+            amnesia as a real problem and would otherwise build their own fix. If
+            you've written your own substrate-management scripts, you'll
+            recognize the pieces. If <em>continuity file</em> and
+            <em>session-closing reflection</em> don't land yet, this probably
+            isn't your tool yet.
+          </p>
+          <p class="hero-links">
+            <a href="https://github.com/levainhq/levain" target="_blank" rel="noopener">Source on GitHub</a>
+            <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">Install from PyPI</a>
+            <a href="https://phillipclapham.com" target="_blank" rel="noopener">Who builds it</a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-bar">
+        <span>Apache-2.0. The patent grant is deliberate.</span>
+        <span>&copy; 2026 Phillip Clapham</span>
+      </div>
+    </footer>
+
+    <script src="site.js"></script>
+    <script src="scribble-underlines.js"></script>
+    <script src="stat-counters.js"></script>
+    <script src="experiment-orbs.js"></script>
+  </body>
+</html>

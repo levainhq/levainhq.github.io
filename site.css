@@ -1,0 +1,1365 @@
+/**
+ * phillipclapham.com — component layer
+ *
+ * Pairs with tokens.css. Together these replace protocol-memory.css (the
+ * inherited foundation from an archived product) and site-overrides.css
+ * (35KB whose only job was fighting the first file).
+ *
+ * Structure: reset → layout → nav → hero + living diagram → seam → ledger
+ * → work → routing → writing → connect → footer.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--s-6);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg-inset);
+  color: var(--text);
+  padding: var(--s-3) var(--s-4);
+  z-index: 100;
+}
+.skip-link:focus {
+  left: var(--s-4);
+  top: var(--s-4);
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-6);
+}
+.nav-mark {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 84;
+  font-weight: 700;
+  font-size: var(--t-base);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--text);
+}
+.nav-links {
+  display: flex;
+  gap: var(--s-6);
+  align-items: center;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-dim);
+  transition: color 0.2s var(--ease);
+}
+.nav-links a:hover {
+  color: var(--accent);
+}
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  padding: var(--s-2) var(--s-3);
+  cursor: pointer;
+  line-height: 1;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============ HERO ============ */
+.hero-band {
+  position: relative;
+  overflow: hidden;
+}
+/* The field is a BACKGROUND layer of the band, as in the original header —
+   not an object inside a content column. That is what lets it bleed and
+   dissolve instead of being cut by a container edge. */
+.field-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6vw;
+}
+/* Soft dissolve at the bottom so the band never shows a hard cut through
+   40px of blur. */
+.hero-band::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 26%;
+  background: linear-gradient(transparent, var(--bg));
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-band > .wrap {
+  position: relative;
+  z-index: 2;
+}
+.hero {
+  position: relative;
+  padding: var(--s-24) 0 var(--s-24);
+  min-height: 34rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--s-6);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 82, "opsz" 96;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6.4vw, var(--t-4xl));
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--s-8);
+}
+.hero-claim {
+  font-size: var(--t-md);
+  line-height: 1.45;
+  max-width: 30ch;
+  margin: 0 0 var(--s-6);
+}
+.hero-claim em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  color: var(--text-dim);
+  max-width: 44ch;
+  margin: 0 0 var(--s-8);
+}
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+}
+.hero-links a {
+  text-decoration: none;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.hero-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.lyr {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--bone);
+  text-shadow: 0 0 6px var(--ink-900), 0 0 12px var(--ink-900), 0 0 3px var(--ink-900);
+}
+.lyr::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 7px;
+  background: rgba(239, 231, 216, 0.4);
+}
+.lyr-gov { top: 1.2%; left: 50%; }
+.lyr-inv { top: 7.7%; left: 50%; }
+.lyr-ver { top: 20.7%; left: 50%; }
+.lyr-mem { top: 29.7%; left: 50%; }
+.lyr-core {
+  top: 56%;
+  left: 50%;
+  color: var(--gold-bright);
+}
+.lyr-core::after {
+  display: none;
+}
+.diagram-caption {
+  margin-top: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* ============ SEAM (kintsugi join) ============ */
+.seam {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(90deg, transparent, var(--accent) 18%, var(--gold-bright) 50%, var(--accent) 82%, transparent);
+  opacity: 0.5;
+}
+
+/* ============ SECTION FURNITURE ============ */
+.section {
+  padding: var(--s-24) 0;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 86;
+  font-weight: 700;
+  font-size: var(--t-xl);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.section-sub {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: var(--s-2) 0 var(--s-12);
+}
+
+/* ============ LEDGER: claim | receipt ============ */
+.ledger-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--s-8);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--s-12);
+  padding: var(--s-8) 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.row:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+.row-claim {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 600;
+  font-size: var(--t-lg);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.row-note {
+  color: var(--text-dim);
+  font-size: var(--t-sm);
+  margin: var(--s-3) 0 0;
+  max-width: 42ch;
+}
+.receipt {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  line-height: 1.85;
+  color: var(--text-dim);
+  margin: 0;
+  padding-left: var(--s-6);
+  border-left: 2px solid var(--patina-deep);
+}
+.receipt b {
+  color: var(--patina-bright);
+  font-weight: 500;
+}
+.receipt a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+}
+.receipt a:hover {
+  color: var(--gold-bright);
+}
+.receipt-tag {
+  display: block;
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-2);
+}
+
+/* ============ WORK CARDS ============ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: var(--s-6);
+  perspective: 1100px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-8);
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.34s var(--ease), border-color 0.34s var(--ease);
+  will-change: transform;
+}
+/* Kintsugi: the seam lights where the break is repaired. */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.card:hover,
+.card:focus-within {
+  border-color: rgba(201, 169, 97, 0.45);
+}
+.card:hover::before,
+.card:focus-within::before {
+  transform: scaleX(1);
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-3);
+  letter-spacing: -0.01em;
+}
+.card p {
+  margin: 0 0 var(--s-4);
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+}
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--patina-bright);
+  margin: auto 0 var(--s-3) !important;
+}
+.card-link {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+  align-self: flex-start;
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(circle, rgba(227, 199, 126, 0.34) 0%, rgba(227, 199, 126, 0) 68%);
+  animation: ripple 0.75s var(--ease) forwards;
+}
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ============ ROUTING: by intent, not by identity label ============
+   Nobody self-identifies as "employer". Everybody knows what they came
+   to do. Routing on intent is what stops four audiences becoming mush. */
+.routes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.route {
+  display: block;
+  padding: var(--s-8);
+  background: var(--bg);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.25s var(--ease);
+}
+.route:hover {
+  background: var(--bg-raised);
+}
+.route-verb {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-2);
+  letter-spacing: -0.01em;
+}
+.route-desc {
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+  margin: 0 0 var(--s-4);
+}
+.route-go {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--accent);
+}
+
+/* ============ WRITING ============ */
+.piece {
+  padding: var(--s-8) 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-8);
+  align-items: baseline;
+}
+.piece:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+.piece h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-2);
+}
+.piece h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.piece h3 a:hover {
+  color: var(--accent);
+}
+.piece p {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+  max-width: 62ch;
+}
+.piece-stamp {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+/* ============ CONNECT ============ */
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--s-6);
+}
+.connect-item {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+}
+.connect-item span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-2);
+}
+.connect-item b {
+  font-weight: 400;
+  color: var(--text);
+}
+.connect-item:hover b {
+  color: var(--accent);
+}
+
+/* ============ FOOTER: Conway's Life ============ */
+.site-footer {
+  position: relative;
+  margin-top: var(--s-16);
+  border-top: 1px solid var(--rule);
+  overflow: hidden;
+}
+#life {
+  display: block;
+  width: 100%;
+  height: 190px;
+}
+.footer-bar {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  padding: var(--s-6);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  background: linear-gradient(transparent, var(--bg) 62%);
+}
+
+a:focus-visible,
+button:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: var(--s-16) 0;
+    min-height: 0;
+  }
+  .field-layer {
+    justify-content: center;
+    padding-right: 0;
+    opacity: 0.42;
+  }
+  /* Below the two-column breakpoint the field sits directly behind the
+     copy, so the layer labels would overlay the wordmark. The field stays
+     as atmosphere; the copy carries the meaning at this size. */
+  .lyr {
+    display: none;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+  .piece {
+    grid-template-columns: 1fr;
+    gap: var(--s-2);
+  }
+  .nav-links a:not(.nav-cta) {
+    display: none;
+  }
+  .section {
+    padding: var(--s-16) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core {
+    animation: none;
+  }
+  .card {
+    transition: none;
+  }
+}
+
+/* ============ LIGHT-MODE DUALS ============
+   `screen` lightens, so on a cream ground it washes the spectrum out to
+   pastel and leaves the labels illegible (light text + dark halo on a light
+   field). `multiply` is the correct dual: it darkens, so the same arcs read
+   as saturated ink on paper. Labels invert to dark-on-light to match. */
+
+
+:root:not([data-theme="dark"]) .lyr {
+  color: #241d13;
+  text-shadow: 0 0 6px var(--paper), 0 0 12px var(--paper), 0 0 3px var(--paper);
+}
+:root:not([data-theme="dark"]) .lyr::after {
+  background: rgba(36, 29, 19, 0.45);
+}
+:root:not([data-theme="dark"]) .lyr-core {
+  color: #7a4a10;
+}
+
+/* ============ INTERIOR PAGES ============ */
+.page-hero {
+  padding: var(--s-24) 0 var(--s-12);
+}
+.page-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 82, "opsz" 96;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5.2vw, var(--t-3xl));
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--s-4);
+}
+.page-lede {
+  font-size: var(--t-md);
+  line-height: 1.45;
+  color: var(--text);
+  max-width: 48ch;
+  margin: 0;
+}
+.page-lede em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* Prose. Left-aligned with a real measure — centred body copy is a
+   readability problem and a taste tell. */
+.prose {
+  max-width: var(--measure);
+}
+.prose p {
+  margin: 0 0 var(--s-6);
+}
+.prose p:last-child {
+  margin-bottom: 0;
+}
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+}
+.prose a:hover {
+  color: var(--gold-bright);
+}
+
+/* Sections are joined by kintsugi seams, not 01/02/03 numbering — the
+   numbering implied a sequence the content does not have. */
+.chapter {
+  padding: var(--s-16) 0;
+  border-top: 1px solid var(--rule);
+}
+.chapter:first-of-type {
+  border-top: 0;
+}
+.chapter-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 88;
+  font-weight: 700;
+  font-size: var(--t-lg);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-8);
+}
+
+.pull-quote {
+  margin: var(--s-8) 0;
+  padding-left: var(--s-6);
+  border-left: 2px solid var(--accent);
+  font-size: var(--t-md);
+  line-height: 1.45;
+  color: var(--text);
+  font-style: italic;
+  max-width: 46ch;
+}
+
+.principles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-6);
+  max-width: var(--measure);
+}
+.principles li {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+}
+.principles b {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-base);
+  margin-bottom: var(--s-2);
+  color: var(--text);
+}
+.principles span {
+  color: var(--text-dim);
+  font-size: var(--t-sm);
+}
+
+/* Definition-style list for "what I'm building" / project rundowns. */
+.rundown {
+  display: grid;
+  gap: var(--s-8);
+}
+.rundown-item {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-6);
+}
+.rundown-item h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-2);
+}
+.rundown-item h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.rundown-item h3 a:hover {
+  color: var(--accent);
+}
+.rundown-item p {
+  margin: 0 0 var(--s-3);
+  color: var(--text-dim);
+  font-size: var(--t-sm);
+  max-width: var(--measure);
+}
+.rundown-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--patina-bright);
+}
+
+.cta-band {
+  padding: var(--s-16) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-6);
+  align-items: baseline;
+}
+.cta-band p {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 88;
+  font-weight: 600;
+  font-size: var(--t-lg);
+  letter-spacing: -0.02em;
+  margin: 0;
+  flex: 1 1 18rem;
+}
+.cta-band a {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+}
+
+/* ============ POEMS ============
+   Radical compression, so the type gets air and the white space is
+   allowed to do its work as text. */
+.poem {
+  padding: var(--s-12) 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: var(--s-8);
+  align-items: start;
+}
+.poem-num {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  padding-top: 0.4rem;
+}
+.poem-body {
+  font-size: var(--t-md);
+  line-height: 1.75;
+  white-space: pre-line;
+  margin: 0;
+  max-width: 34ch;
+  color: var(--text);
+}
+.poem-seal {
+  font-size: var(--t-lg);
+  color: var(--accent);
+  margin-top: var(--s-4);
+}
+@media (max-width: 700px) {
+  .poem {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+  }
+}
+
+/* ============ STATUS MARKERS ============
+   Honest states, including "not publicly released" — a card with no
+   verifiable artifact should say so rather than claim Active and link
+   nowhere. */
+.status {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 2px var(--s-2);
+  border: 1px solid var(--rule);
+  color: var(--text-faint);
+  margin-bottom: var(--s-3);
+}
+.status--live {
+  color: var(--patina-bright);
+  border-color: var(--patina-deep);
+}
+.status--maint {
+  color: var(--gold);
+  border-color: var(--gold-deep);
+}
+.status--archived {
+  color: var(--text-faint);
+}
+.archived-list {
+  display: grid;
+  gap: var(--s-6);
+  max-width: var(--measure);
+}
+.archived-list .rundown-item p {
+  color: var(--text-faint);
+}
+
+/* Intro prose sitting between a page hero and a seam needs its own
+   breathing room, or the last line collides with the rule. */
+.page-intro {
+  padding-bottom: var(--s-16);
+}
+
+/* ============ MOTION LAYER ============
+   This is the "up" state. Founder Mode turns it DOWN — a dial with
+   nothing above zero is not a dial, so the pizzazz has to exist first. */
+
+.rise {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.rise.risen {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+.reveal.shown {
+  opacity: 1;
+  transform: none;
+}
+/* The seam draws across rather than fading — a kintsugi join being made. */
+hr.seam.reveal {
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 1;
+  transition: transform 1.1s var(--ease);
+}
+hr.seam.reveal.shown {
+  transform: scaleX(1);
+}
+
+/* Cards: lift, warm the border, and float the meta line. */
+.card {
+  transition: transform 0.34s var(--ease), border-color 0.34s var(--ease),
+    background 0.34s var(--ease), box-shadow 0.34s var(--ease);
+}
+.card:hover {
+  background: var(--bg-inset);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+}
+.card-meta {
+  transition: color 0.3s var(--ease), letter-spacing 0.3s var(--ease);
+}
+.card:hover .card-meta {
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+}
+.card-link {
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+  display: inline-block;
+}
+.card:hover .card-link {
+  color: var(--gold-bright);
+  transform: translateX(5px);
+}
+
+/* Nav: an underline that grows from the left. */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 1px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.32s var(--ease);
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Routes: the arrow steps out, the panel warms. */
+.route-go {
+  display: inline-block;
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+.route:hover .route-go {
+  transform: translateX(7px);
+  color: var(--gold-bright);
+}
+.route-verb {
+  transition: color 0.3s var(--ease);
+}
+.route:hover .route-verb {
+  color: var(--accent);
+}
+
+/* Ledger rows: the receipt's rule lights when you read the claim. */
+.row .receipt {
+  transition: border-color 0.4s var(--ease);
+}
+.row:hover .receipt {
+  border-left-color: var(--patina-bright);
+}
+.row-claim {
+  transition: color 0.3s var(--ease);
+}
+.row:hover .row-claim {
+  color: var(--gold-bright);
+}
+
+/* Writing pieces + connect items. */
+.piece h3 a,
+.connect-item b {
+  transition: color 0.28s var(--ease);
+}
+.piece {
+  transition: background 0.35s var(--ease);
+}
+.piece:hover {
+  background: linear-gradient(90deg, var(--bg-raised), transparent 70%);
+}
+.connect-item {
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.connect-item:hover {
+  border-top-color: var(--accent);
+  transform: translateY(-3px);
+}
+.hero-links a,
+.cta-band a {
+  transition: transform 0.25s var(--ease), color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+/* ---------- FOUNDER MODE OFF: turn it all down ---------- */
+.motion-off .rise,
+.motion-off .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+.motion-off .card:hover,
+.motion-off .connect-item:hover,
+.motion-off .piece:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: var(--bg-raised);
+}
+.motion-off .card:hover .card-meta {
+  color: var(--patina-bright);
+  letter-spacing: 0;
+}
+.motion-off .card:hover .card-link,
+.motion-off .route:hover .route-go {
+  transform: none;
+}
+.motion-off .cognitive-pulse {
+  opacity: 0.35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Scribble underlines need a positioning context and room beneath. */
+/* The scribble is sized from the element's width, so headings must hug
+   their text or the hand-drawn line runs the full container. */
+.section-title,
+.chapter-title {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: var(--s-6);
+}
+.scribble-underline {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  overflow: visible;
+  pointer-events: none;
+}
+.motion-off .scribble-underline {
+  opacity: 0.4;
+}
+
+/* Counting receipts: gold while they tick, so the eye catches the motion. */
+.stat-value {
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============ THE HARNESS MAP ============
+   Ported from the Adaptive Human "principle network" — a topological
+   evidence board. Pinned index cards at slight rotations, curved SVG
+   string running between related ideas, spectrum glow on hover. The
+   original demonstrated FlowScript's vision (ideas connecting in
+   thought-space) rather than describing it; here it does the same job for
+   the harness architecture. Restyled to the estate palette — kintsugi
+   gold and verdigris, not the original teal. */
+.map-lede {
+  max-width: var(--measure);
+  color: var(--text-dim);
+  margin: 0 0 var(--s-12);
+}
+.principle-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-6);
+}
+.principle-connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+.principle-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  padding: var(--s-8) var(--s-6) var(--s-6);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+  z-index: 2;
+}
+/* Slight rotations so it reads as pinned card stock, not a CSS grid. */
+.principle-card:nth-child(2) { transform: rotate(-0.9deg); }
+.principle-card:nth-child(3) { transform: rotate(1.2deg); }
+.principle-card:nth-child(4) { transform: rotate(-0.5deg); }
+.principle-card:nth-child(5) { transform: rotate(0.7deg); }
+.principle-card:nth-child(6) { transform: rotate(-1.3deg); }
+.principle-card:nth-child(7) { transform: rotate(0.9deg); }
+.principle-card:nth-child(8) { transform: rotate(-0.7deg); }
+.principle-card:nth-child(9) { transform: rotate(1.1deg); }
+
+.card-pin {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  filter: saturate(0.75);
+}
+.card-pin,
+.principle-title,
+.principle-subtitle,
+.principle-detail {
+  position: relative;
+  z-index: 1;
+}
+.principle-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-base);
+  line-height: 1.25;
+  margin: 0 0 var(--s-2);
+  letter-spacing: -0.01em;
+}
+.principle-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--patina-bright);
+  margin: 0 0 var(--s-3);
+}
+.principle-detail {
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+  margin: 0;
+}
+
+/* Spectrum glow on hover — the same emergence cue as the original, in the
+   pulse field's colours so the page reads as one system. */
+.principle-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(227, 199, 126, 0.85) 0%,
+    rgba(201, 169, 97, 0.45) 45%,
+    rgba(138, 113, 58, 0) 78%
+  );
+  opacity: 0;
+  filter: blur(18px);
+  transition: opacity 0.5s var(--ease);
+  z-index: 0;
+  pointer-events: none;
+}
+.principle-card:hover,
+.principle-card:focus-visible {
+  transform: rotate(0deg) translateY(-4px);
+  border-color: rgba(201, 169, 97, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+.principle-card:hover::before,
+.principle-card:focus-visible::before {
+  opacity: 0.5;
+  animation: spectrumPulse 3.4s ease-in-out infinite;
+}
+@keyframes spectrumPulse {
+  0%, 100% { filter: blur(18px) brightness(1); transform: scale(1); }
+  50% { filter: blur(24px) brightness(1.18); transform: scale(1.03); }
+}
+/* Cards a hovered card connects to. */
+.principle-card.connected {
+  border-color: var(--patina-bright);
+  box-shadow: 0 0 0 1px var(--patina-deep);
+}
+
+.motion-off .principle-card { transform: none !important; }
+.motion-off .principle-card::before { display: none; }
+
+@media (max-width: 1000px) {
+  .principle-board { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .principle-board { grid-template-columns: 1fr; }
+  .principle-card { transform: none !important; }
+}
+
+/* Connection string between pinned cards. */
+.connection-line {
+  fill: none;
+  stroke: var(--gold-deep);
+  stroke-width: 1.2;
+  opacity: 0.45;
+  transition: stroke 0.3s var(--ease), opacity 0.3s var(--ease),
+    stroke-width 0.3s var(--ease);
+}
+.connection-line.highlighted {
+  stroke: var(--gold-bright);
+  stroke-width: 2;
+  opacity: 1;
+}
+
+/* Modal */
+/* JS toggles inline display flex/none, so the layout must work as flex. */
+.principle-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-6);
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 7, 5, 0.82);
+  backdrop-filter: blur(6px);
+}
+.modal-panel {
+  position: relative;
+  max-width: 34rem;
+  width: 100%;
+  background: var(--bg-raised);
+  border: 1px solid rgba(201, 169, 97, 0.4);
+  padding: var(--s-12) var(--s-8) var(--s-8);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.modal-close {
+  position: absolute;
+  top: var(--s-3);
+  right: var(--s-4);
+  background: none;
+  border: 0;
+  color: var(--text-faint);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal-close:hover { color: var(--accent); }
+.modal-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 700;
+  font-size: var(--t-xl);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-2);
+}
+.modal-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--patina-bright);
+  margin: 0 0 var(--s-6);
+}
+.modal-detail { margin: 0 0 var(--s-8); color: var(--text); }
+.modal-connects-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 var(--s-3);
+}
+.connection-links { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.connection-link {
+  border: 1px solid var(--rule);
+  padding: var(--s-2) var(--s-4);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.connection-link:hover { border-color: var(--accent); color: var(--accent); }
+.connection-link-title {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+}
+
+/* ============ EXPERIMENT ORBS (click effect) ============
+   Ported from the archived Adapt Human site (styles/interactions.css).
+   Geometry, timing and both keyframe tracks are the donor's, unchanged:
+   a 60px ring, 800ms, the same cubic-bezier. Two things differ — the
+   dark branch keys off :root[data-theme="dark"] rather than
+   body.dark-mode, and the colours arrive as custom properties set per
+   orb by experiment-orbs.js from the live design tokens, so an orb is
+   gold in a claim section and patina in an evidence section.
+
+   Light mode: ring outline, no fill (a ripple on paper).
+   Dark mode:  filled radial gradient (a spark in the dark).
+   ============================================================ */
+
+.experiment-orb {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: orbRipple 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  z-index: 9999;
+  will-change: transform, opacity;
+  border: 2px solid var(--orb-color);
+  background: transparent;
+}
+
+[data-theme="dark"] .experiment-orb {
+  border: none;
+  background: radial-gradient(
+    circle,
+    var(--orb-color-secondary) 0%,
+    var(--orb-color-tertiary) 35%,
+    transparent 70%
+  );
+  animation: orbExpandDark 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Light mode — ripple expanding, deliberately restrained */
+@keyframes orbRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Dark mode — filled orb, carries further */
+@keyframes orbExpandDark {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.32;
+  }
+  50% {
+    opacity: 0.22;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* Founder Mode turns them DOWN, not off — the toggle's own inversion. */
+.motion-off .experiment-orb {
+  opacity: 0.3;
+  animation-duration: 500ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experiment-orb {
+    display: none;
+  }
+}
