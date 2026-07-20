@@ -26,3 +26,23 @@ The `Boundaries, kept honest` section is load-bearing: it states what the kit
 does *not* do, including that the automation-threshold membrane is a
 specification rather than shipped code. A floor that oversells itself is worse
 than no floor.
+
+## DNS cutover (pending)
+
+`levainhq.com` currently sits behind a Cloudflare redirect rule that 302s to
+the Levain repo. Until that is changed, the `CNAME` file is held as
+`CNAME.pending`: with it in place GitHub Pages 301s `levainhq.github.io` to
+`levainhq.com`, which Cloudflare then bounces to the repo — so the site
+redirects past itself and is unreachable.
+
+To cut over:
+
+1. In Cloudflare, remove the `levainhq.com` redirect rule.
+2. Point `levainhq.com` at GitHub Pages (either the four A records for
+   `185.199.108–111.153`, or a CNAME to `levainhq.github.io`), DNS-only —
+   grey cloud, not proxied.
+3. `mv CNAME.pending CNAME`, commit, push.
+4. Confirm the custom domain and HTTPS enforcement in the repo's Pages settings.
+
+Until then the site serves at
+[levainhq.github.io](https://levainhq.github.io).
