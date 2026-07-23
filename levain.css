@@ -47,9 +47,26 @@ code {
   color: inherit;
 }
 
-/* ---- The hero carries no field layer here, so it needs its own top air ---- */
+/* ---- Hero top air. The hero now carries a field layer — the living starter —
+        but the extra top padding still gives the wordmark room. ---- */
 .hero-band {
   padding-top: var(--s-16);
+}
+
+/* ---- The living starter: the hero's field layer. A canvas culture mounted in
+        the shared .field-layer (right-weighted on desktop, centred and dimmed
+        behind the copy on mobile). It fills the band's height; the width is
+        capped so it reads as an object, not a wash. Animated in
+        living-starter.js — this file only sizes and places it. ---- */
+.starter-field {
+  display: block;
+  width: min(720px, 50vw);
+  height: 100%;
+}
+@media (max-width: 900px) {
+  .starter-field {
+    width: min(560px, 90vw);
+  }
 }
 
 /* ---- Prose blocks inside product sections keep the reading measure ---- */
