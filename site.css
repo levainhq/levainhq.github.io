@@ -356,6 +356,11 @@ a {
   border: 1px solid var(--rule);
   overflow: hidden;
   transform-style: preserve-3d;
+  /* Consume the tilt vars Card3DTilt writes (interactions.js) — the 3D stage
+     (perspective on .card-grid, preserve-3d, will-change, the transition below)
+     was staged in Session 2 but this consuming rule was never added, so the ±5°
+     tilt shipped dead. Default 0deg = no tilt until JS drives it. */
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   transition: transform 0.34s var(--ease), border-color 0.34s var(--ease);
   will-change: transform;
 }
