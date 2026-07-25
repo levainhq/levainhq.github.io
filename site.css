@@ -355,13 +355,16 @@ a {
   background: var(--bg-raised);
   border: 1px solid var(--rule);
   overflow: hidden;
-  transform-style: preserve-3d;
-  /* Consume the tilt vars Card3DTilt writes (interactions.js) — the 3D stage
-     (perspective on .card-grid, preserve-3d, will-change, the transition below)
-     was staged in Session 2 but this consuming rule was never added, so the ±5°
-     tilt shipped dead. Default 0deg = no tilt until JS drives it. */
+  /* NOTE: `transform-style: preserve-3d` used to sit here and was INERT — `overflow: hidden`
+     one line above forces transform-style to flat (CSS Transforms L2). The rotation has
+     always come from `.card-grid`'s `perspective` (:348), which is unaffected. Removed
+     rather than left as decoration, since the comment below used to cite it as part of a
+     working stage. */
+  /* Consume the tilt vars Card3DTilt writes (interactions.js). Base rule for a card that
+     never receives `.reveal` (JS off). The LIVE path is `.card.reveal[.shown]` below —
+     see the specificity note there before editing either. */
   transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-  transition: transform 0.34s var(--ease), border-color 0.34s var(--ease);
+  transition: border-color 0.34s var(--ease);
   will-change: transform;
 }
 /* Kintsugi: the seam lights where the break is repaired. */
@@ -1052,6 +1055,35 @@ button:focus-visible,
   opacity: 1;
   transform: none;
 }
+
+/* CARDS COMPOSE THE REVEAL AND THE TILT INSTEAD OF STACKING THEM.
+   `transform` is ONE property, so the reveal and the ±5° tilt cannot each own a rule and
+   both survive — the loser is simply erased. That is what shipped: `.card` (0,1,0) carried
+   the tilt while `.reveal.shown { transform: none }` (0,2,0) won unconditionally, and
+   before `shown` was added `.reveal`'s translateY won on source order. The tilt was
+   overridden in BOTH states, on every card, in the only configuration where the tilt JS
+   runs at all (site.js:54 skips `.reveal` under reduced motion, and interactions.js:253
+   skips the tilt under the same condition).
+
+   These two rules are (0,2,0) and (0,3,0), so they beat `.reveal` and `.reveal.shown`
+   respectively, and they name BOTH transforms in one value. Do NOT "simplify" this by
+   moving the translate back into `.reveal` — that rule is shared with .row/.route/.piece/
+   .poem/.connect-item/.section-title (site.js:72), which have no tilt and must keep it.
+
+   The `.shown` rule also drops `transform` from its transition list on purpose: during the
+   reveal the slide is animated (0.75s), and once revealed the RAF lerp in Card3DTilt owns
+   transform outright. Leaving a 0.34s transition on a property being rewritten every frame
+   compounds with the lerp and reads as mush (~160ms lerp + ~340ms tail). */
+.card.reveal {
+  transform: translateY(22px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+.card.reveal.shown {
+  transform: translateY(0) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: opacity 0.75s var(--ease), border-color 0.34s var(--ease),
+    background 0.34s var(--ease), box-shadow 0.34s var(--ease);
+}
+
 /* The seam draws across rather than fading — a kintsugi join being made. */
 hr.seam.reveal {
   transform: scaleX(0);
