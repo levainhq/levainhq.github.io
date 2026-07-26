@@ -28,7 +28,14 @@
 
     // Card 3D Tilt (Session 2)
     tiltMaxDegrees: 5,          // Maximum tilt angle (±5 degrees, organic feel)
-    tiltSmoothness: 0.1,        // Lerp factor (0.1 = smooth, 0.5 = snappy)
+    tiltSmoothness: 0.1,        // Lerp factor while TRACKING the cursor (0.1 = smooth, 0.5 = snappy)
+    tiltReleaseSmoothness: 0.18,// Lerp factor on RELEASE (mouse-out). Deliberately FASTER than the
+                                // tracking rate: while tracking, your own hand motion masks the
+                                // lerp's tail, but on release nothing masks it, so the same 0.1
+                                // reads as a long drift. MEASURED from a 4.20deg peak — time to
+                                // three-quarters travelled / time to zero: 0.10 -> 217/600ms,
+                                // 0.18 -> 117/316ms, 0.28 -> 67/200ms. Picked by eye at 0.18
+                                // against a side-by-side rig (Phill, 2026-07-26).
     tiltUpdateThrottle: 16,     // Throttle mousemove to 60fps (16ms)
 
     // Click Ripples (Session 2)
@@ -244,9 +251,13 @@
       // Track initialized cards (use Set to avoid duplicates)
       this.initializedCards = new Set();
       this.activeCard = null;
-      this.currentRotation = { x: 0, y: 0 };
-      this.targetRotation = { x: 0, y: 0 };
-      this.isAnimating = false;
+      // PER-CARD rotation state. This used to be three fields on the CONTROLLER
+      // (currentRotation / targetRotation / isAnimating) while animate() closed over one
+      // card — so every card shared one set of angles. Transiting A -> B inside a single
+      // frame let A's still-pending frame write B's angles into A and then halt, leaving A
+      // stuck at a non-zero tilt until it was hovered again. Keying the state to the card
+      // removes the shared mutable state the race needed. (Diogenes 2026-07-26, #2.)
+      this.tiltState = new WeakMap();
       this.observer = null;
 
       // Skip on mobile (will use gyroscope instead) or if reduced motion preferred
@@ -398,13 +409,24 @@
 
       // Convert to rotation angles (±maxDegrees)
       // Invert Y axis for natural tilt (mouse up = card tilts back)
-      this.targetRotation.x = -relativeY * CONFIG.tiltMaxDegrees;
-      this.targetRotation.y = relativeX * CONFIG.tiltMaxDegrees;
+      const state = this.stateFor(card);
+      state.target.x = -relativeY * CONFIG.tiltMaxDegrees;
+      state.target.y = relativeX * CONFIG.tiltMaxDegrees;
 
-      // Start smooth animation if not already running
-      if (!this.isAnimating && this.activeCard === card) {
-        this.animateTilt(card);
+      this.animateTilt(card);
+    }
+
+    /**
+     * Per-card rotation state, created on first touch.
+     * @param {HTMLElement} card - The card element
+     */
+    stateFor(card) {
+      let state = this.tiltState.get(card);
+      if (!state) {
+        state = { current: { x: 0, y: 0 }, target: { x: 0, y: 0 }, animating: false };
+        this.tiltState.set(card, state);
       }
+      return state;
     }
 
     /**
@@ -412,28 +434,36 @@
      * @param {HTMLElement} card - The card element
      */
     animateTilt(card) {
-      this.isAnimating = true;
+      const state = this.stateFor(card);
+      if (state.animating) return;   // one loop per card; it owns this card until settled
+      state.animating = true;
 
       const animate = () => {
         // Smooth interpolation (lerp) towards target rotation
-        const diffX = this.targetRotation.x - this.currentRotation.x;
-        const diffY = this.targetRotation.y - this.currentRotation.y;
+        const diffX = state.target.x - state.current.x;
+        const diffY = state.target.y - state.current.y;
 
         if (Math.abs(diffX) > 0.1 || Math.abs(diffY) > 0.1) {
-          this.currentRotation.x += diffX * CONFIG.tiltSmoothness;
-          this.currentRotation.y += diffY * CONFIG.tiltSmoothness;
-          this.applyTilt(card);
+          // Heading HOME uses the release rate; tracking the cursor uses the entry rate.
+          const homing = state.target.x === 0 && state.target.y === 0;
+          const k = homing ? CONFIG.tiltReleaseSmoothness : CONFIG.tiltSmoothness;
 
-          if (this.activeCard === card) {
-            requestAnimFrame(animate);
-          } else {
-            this.isAnimating = false;
-          }
+          state.current.x += diffX * k;
+          state.current.y += diffY * k;
+          this.applyTilt(card, state);
+
+          // The loop MUST keep running after mouse-out. It used to stop the moment
+          // `activeCard !== card`, which — combined with resetTilt() writing the vars
+          // directly — made the release land in a single frame (MEASURED: 4.20deg -> 0
+          // in 16ms, one frame). Nothing eased it, because .card.reveal.shown deliberately
+          // drops `transform` from its transition list so the RAF owns it outright.
+          // Settling is now what ends the loop, not hover state. (Diogenes 2026-07-26, #1.)
+          requestAnimFrame(animate);
         } else {
-          this.currentRotation.x = this.targetRotation.x;
-          this.currentRotation.y = this.targetRotation.y;
-          this.applyTilt(card);
-          this.isAnimating = false;
+          state.current.x = state.target.x;
+          state.current.y = state.target.y;
+          this.applyTilt(card, state);
+          state.animating = false;
         }
       };
 
@@ -443,24 +473,31 @@
     /**
      * Apply tilt transform to card (using CSS custom properties)
      * @param {HTMLElement} card - The card element
+     * @param {Object} [state] - The card's rotation state (looked up if omitted)
      */
-    applyTilt(card) {
+    applyTilt(card, state) {
       // Use CSS custom properties instead of inline transform
       // This avoids conflicts with existing hover transforms
-      card.style.setProperty('--tilt-x', `${this.currentRotation.x}deg`);
-      card.style.setProperty('--tilt-y', `${this.currentRotation.y}deg`);
+      const s = state || this.stateFor(card);
+      card.style.setProperty('--tilt-x', `${s.current.x}deg`);
+      card.style.setProperty('--tilt-y', `${s.current.y}deg`);
     }
 
     /**
-     * Reset card tilt to neutral position
+     * Release the card: aim it home and let the lerp carry it.
+     *
+     * This sets the TARGET only. It must not zero `current`, and it must not write the
+     * CSS vars directly — doing either is what made the release a one-frame snap, since
+     * the RAF is the only thing that eases transform on `.card.reveal.shown`.
+     * (Diogenes 2026-07-26, #1.)
+     *
      * @param {HTMLElement} card - The card element
      */
     resetTilt(card) {
-      this.targetRotation = { x: 0, y: 0 };
-      this.currentRotation = { x: 0, y: 0 };
-      // Reset CSS custom properties to 0
-      card.style.setProperty('--tilt-x', '0deg');
-      card.style.setProperty('--tilt-y', '0deg');
+      const state = this.stateFor(card);
+      state.target.x = 0;
+      state.target.y = 0;
+      this.animateTilt(card);
     }
 
     /**
