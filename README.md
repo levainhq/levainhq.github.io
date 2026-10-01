@@ -21,10 +21,10 @@ Every claim in the ledger carries a receipt. The receipts that carry a figure
 were re-derived against `levainhq/levain@7370778` (origin/main, 2026-09-30):
 the firing tier's import edges by walking every file's AST, the version from
 PyPI, the anneal pin from `pyproject.toml`, the kernel's export count from
-`levain/kernel.py`. Counts of the live codebase (lines, tests) are deliberately NOT
-printed on the page; the 96 → 549 accrual figures are a dated snapshot and
-are exempt: a count rots the day after it is written, and the test count has to
-come from running the suite, never from grepping `def test_`. If you add a
+`levain/kernel.py`. Counts of the live codebase (lines, tests) are deliberately NOT printed on
+the page: a count rots the day after it is written, and the test count has to
+come from running the suite, never from grepping `def test_`. The 96 → 549
+accrual figures are exempt because they are a fixed historical snapshot. If you add a
 number, add the command that derives it.
 
 The `Boundaries, kept honest` section is load-bearing: it states what the kit
