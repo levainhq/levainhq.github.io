@@ -229,13 +229,16 @@
             <article class="card">
               <h3>The sovereign entity runtime</h3>
               <p>
-                An entity REPL on an open model, and a human-gated consolidate
-                where the command invocation <em>is</em> the gate the autonomous
-                loop may never trip itself. Underneath sits the firing tier: the
-                harness-neutral contract, the presence seam, the isolation guard,
-                and the confinement floor. The same entity can run on a
-                schedule as a governed seat, and every action it takes that
-                reaches outside itself halts and reports back to you first.
+                An entity REPL on an open model, and a consolidate that folds
+                what it learned into its own lasting memory: you run it with
+                <code>levain wrap</code>, and a governed seat runs it itself
+                after a turn once enough has built up. Underneath sits the
+                firing tier: the harness-neutral contract, the presence seam,
+                the isolation guard, and the confinement floor. The same entity
+                can run on a schedule as a governed seat, and by default every
+                action it takes that reaches outside itself halts before it
+                runs and leaves the log for you to read. That default can be
+                switched off per entity; it is not a lock.
               </p>
               <p class="card-meta">run · wrap · daemon install-seat · levain/firing/</p>
             </article>
@@ -268,8 +271,10 @@
             So the floor allows by default and denies a small, explicit,
             absolute-path-pinned set: the sovereignty crown jewels. The entity
             works like any normal shell, and the handful of things that must
-            never be readable or writable are structurally out of reach no
-            matter what the model is told. The module needs only the standard
+            never be readable or writable stay denied whatever the model is
+            told, across every route the floor knows how to close. It is a
+            floor, not a guarantee: the source names the routes it has not
+            closed yet. The module needs only the standard
             library and one sibling inside the firing tier, so the floor is
             unit-testable in complete isolation from the thing it protects.
           </p>
@@ -319,6 +324,17 @@
                 threshold policy, so nothing graduates to unattended action.
               </p>
               <p class="rundown-meta">stated in the source of levain/firing/confinement.py</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>No security absolutes.</b> The confinement floor is real and
+                load-bearing, but it is a floor, not a guarantee. It denies a
+                fixed set of crown-jewel paths and known escape routes, not
+                "everything dangerous." Read the module docstrings in
+                <code>levain/firing/confinement.py</code> before trusting it
+                with something that matters.
+              </p>
+              <p class="rundown-meta">stated in the README and in levain/firing/confinement.py</p>
             </div>
             <div class="rundown-item">
               <p>
