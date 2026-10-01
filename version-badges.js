@@ -93,8 +93,8 @@
           live +
           " on PyPI but this page was written against " +
           drifted +
-          ". Test counts and integration counts near this badge are " +
-          "hand-typed and cannot self-update — check them."
+          ". The receipts near this badge (the anneal pin, export counts) " +
+          "are hand-typed and cannot self-update — check them."
       );
     }
   }

@@ -7,7 +7,7 @@
     <title>Levain | Portable cognitive-partnership memory and methodology</title>
     <meta
       name="description"
-      content="Levain is a portable cognitive-partnership memory and methodology kit. Ship the seed that grows a practice, not the grown practice. Memory that persists across sessions and stays on your machine, in a store you can read, inspect and edit from outside any session."
+      content="Levain is a portable cognitive-partnership memory and methodology kit. Ship the seed that grows a practice, not the grown practice. Memory that persists across sessions, in a store you own and can read, inspect and edit from outside any session."
     />
     <meta name="author" content="Phillip Clapham" />
     <meta name="theme-color" content="#100e0b" />
@@ -151,11 +151,12 @@
                 The store is a local SQLite file. The browser view binds loopback
                 only and refuses non-loopback hosts. It serves its own UI from the
                 package, so it renders offline with no CDN. No vendor host, no
-                account, nothing to revoke. One thing can leave the machine: a
-                sovereign entity's model traffic. Its default model,
-                <code>glm-5.2:cloud</code>, is served through Ollama Cloud; point
-                <code>--model</code> at a plain local Ollama name to keep the
-                whole conversation on your machine.
+                account, nothing to revoke. Two model calls can leave the
+                machine, both on a sovereign entity: the conversation
+                (<code>--model</code>) and the wrap that composes its memory
+                (<code>--composer</code>). Both default to
+                <code>glm-5.2:cloud</code>, served through Ollama Cloud; point
+                both at a plain local Ollama name to keep them on your machine.
               </p>
             </div>
             <p class="receipt">
@@ -451,7 +452,6 @@ levain serve --write                 # ...and steer it, through the governed pat
     <script src="site.js"></script>
     <script src="interactions.js"></script>
     <script src="scribble-underlines.js"></script>
-    <script src="stat-counters.js"></script>
     <script src="experiment-orbs.js"></script>
     <script src="version-badges.js"></script>
     <script src="living-starter.js"></script>
