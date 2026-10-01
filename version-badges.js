@@ -13,12 +13,11 @@
  * hand-typed value — which was accurate the day it was committed. The failure
  * mode is "slightly old," never "blank" and never "undefined".
  *
- * WHAT IT CANNOT DO, STATED PLAINLY. Test counts (1,642 / 1,702) and the
- * integration count are not published in any machine-readable place — they come
- * from RUNNING the suites. This script cannot refresh them and does not pretend
- * to. What it does instead: when a package's live version differs from the one
- * baked into this page, it warns in the console, because a version bump is the
- * best available signal that the counts next to it have also moved. Drift you
+ * WHAT IT CANNOT DO, STATED PLAINLY. Test counts are not published in
+ * any machine-readable place — they come from RUNNING the suites — so the page
+ * prints none. What this does: when a package's live version differs from the
+ * one baked into this page, it warns in the console, because a version bump is
+ * the best available signal that the other receipts next to it have also moved. Drift you
  * can see beats drift you cannot.
  *
  * PyPI's JSON API sends `access-control-allow-origin: *` (verified against the

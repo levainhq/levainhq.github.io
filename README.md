@@ -17,15 +17,18 @@ not the product's.
 
 ## Content discipline
 
-Every claim in the ledger carries a receipt, and every receipt was verified
-against the source at `levainhq/levain@d4163af` — not against the README, and
-not from memory. Test counts come from running the suite, never from grepping
-`def test_`, which undercounts parametrized cases.
+Every claim in the ledger carries a receipt. The receipts that carry a figure
+were re-derived against `levainhq/levain@7370778` (origin/main, 2026-09-30):
+the firing tier's import edges by walking every file's AST, the version from
+PyPI, the anneal pin from `pyproject.toml`, the kernel's export count from
+`levain/kernel.py`. Line counts and test counts are deliberately NOT printed on
+the page: a count rots the day after it is written, and the test count has to
+come from running the suite, never from grepping `def test_`. If you add a
+number, add the command that derives it.
 
 The `Boundaries, kept honest` section is load-bearing: it states what the kit
-does *not* do, including that the automation-threshold membrane is a
-specification rather than shipped code. A floor that oversells itself is worse
-than no floor.
+does *not* do. Keep it in step with the `Boundaries, kept honest` section of the
+Levain README. A floor that oversells itself is worse than no floor.
 
 ## Custom domain
 

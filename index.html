@@ -17,7 +17,7 @@
     <meta property="og:title" content="Levain | Ship the seed, not the fossil" />
     <meta
       property="og:description"
-      content="Portable cognitive-partnership memory and methodology. Sovereignty enforced by the import graph, not asserted in prose. Apache-2.0, on your machine."
+      content="Portable cognitive-partnership memory and methodology. Sovereignty enforced by the import graph, not asserted in prose. Apache-2.0, memory you own."
     />
     <!-- twitter:card is deliberately `summary`, not `summary_large_image`:
          no og:image exists yet, and declaring a large-image card without one
@@ -118,8 +118,8 @@
             <p class="receipt">
               <span class="receipt-tag">Structural</span>
               <b>levain/firing/ &rarr; zero outward edges</b><br />
-              <span class="stat-value">15</span> modules · 4,608 lines<br />
-              only <code>run.py</code> and <code>wrap.py</code> import inward<br />
+              every module in the tier, the OpenHands sub-package included<br />
+              checked by walking each import, function-level ones too<br />
               <a href="https://github.com/levainhq/levain/tree/main/levain/firing" target="_blank" rel="noopener">read the tier</a>
             </p>
           </div>
@@ -146,19 +146,23 @@
 
           <div class="row">
             <div>
-              <p class="row-claim">It runs on your machine or it doesn't run.</p>
+              <p class="row-claim">Your memory lives on your machine, in a store you own.</p>
               <p class="row-note">
                 The store is a local SQLite file. The browser view binds loopback
                 only and refuses non-loopback hosts. It serves its own UI from the
                 package, so it renders offline with no CDN. No vendor host, no
-                account, nothing to revoke.
+                account, nothing to revoke. One thing can leave the machine: a
+                sovereign entity's model traffic. Its default model,
+                <code>glm-5.2:cloud</code>, is served through Ollama Cloud; point
+                <code>--model</code> at a plain local Ollama name to keep the
+                whole conversation on your machine.
               </p>
             </div>
             <p class="receipt">
               <span class="receipt-tag">Shipped</span>
-              <b>Levain <span class="pkg-version" data-pkg="levain">v0.3.13</span></b><br />
-              <span class="stat-value">1,702</span> tests passing · Apache-2.0<br />
-              built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> (pinned &ge;0.9.6,&lt;0.10)<br />
+              <b>Levain <span class="pkg-version" data-pkg="levain">v0.4.8</span></b><br />
+              Apache-2.0<br />
+              built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> (pinned &ge;0.9.10,&lt;0.10)<br />
               <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a>
             </p>
           </div>
@@ -227,9 +231,11 @@
                 where the command invocation <em>is</em> the gate the autonomous
                 loop may never trip itself. Underneath sits the firing tier: the
                 harness-neutral contract, the presence seam, the isolation guard,
-                and the confinement floor.
+                and the confinement floor. The same entity can run on a
+                schedule as a governed seat, and every action it takes that
+                reaches outside itself halts and reports back to you first.
               </p>
-              <p class="card-meta">run · wrap · levain/firing/</p>
+              <p class="card-meta">run · wrap · daemon install-seat · levain/firing/</p>
             </article>
           </div>
         </section>
@@ -261,15 +267,15 @@
             absolute-path-pinned set: the sovereignty crown jewels. The entity
             works like any normal shell, and the handful of things that must
             never be readable or writable are structurally out of reach no
-            matter what the model is told. The module is pure standard library
-            and imports nothing else in the package, so the floor is unit-testable
-            in complete isolation from the thing it protects.
+            matter what the model is told. The module needs only the standard
+            library and one sibling inside the firing tier, so the floor is
+            unit-testable in complete isolation from the thing it protects.
           </p>
 
           <div class="rundown">
             <div class="rundown-item">
-              <p>Largest module in the package, and the most load-bearing.</p>
-              <p class="rundown-meta">confinement.py · 1,421 lines · pure stdlib</p>
+              <p>The most load-bearing module in the package.</p>
+              <p class="rundown-meta">levain/firing/confinement.py · stdlib only</p>
             </div>
             <div class="rundown-item">
               <p>Denies by absolute path, so a relative-path trick can't walk out of it.</p>
@@ -298,28 +304,36 @@
           <div class="rundown">
             <div class="rundown-item">
               <p>
-                <b>The automation-threshold membrane is a specification, not
-                code.</b> The floor protects the crown jewels and nothing else.
-                With default-allow and no membrane, a confabulating model can
-                still destroy a real repository, force-push, or pipe a download
-                into a shell — none of which the floor stops. So v1 is a
-                structural floor plus you in the loop, and unattended operation
-                is explicitly not a v1 claim.
+                <b>The floor protects the crown jewels and nothing else.</b>
+                With default-allow, a confabulating model can still destroy a
+                real repository, force-push, or pipe a download into a shell,
+                and the floor stops none of it. What covers the rest is a
+                separate mechanism, the efferent gate: when nobody is watching
+                (a scheduled seat, or <code>run --task</code>) every action that
+                reaches outside the entity halts before it runs. In the
+                interactive REPL the gate is off and you are the check. Setting
+                <code>efferent_gate: "ungated"</code> turns it off everywhere,
+                scheduled seats included. What is still not built: per-domain
+                threshold policy, so nothing graduates to unattended action.
               </p>
-              <p class="rundown-meta">stated verbatim in shipped source</p>
+              <p class="rundown-meta">stated in the source of levain/firing/confinement.py</p>
             </div>
             <div class="rundown-item">
               <p>
-                <b>Harnesses:</b> Claude Code and Codex CLI. One adapter per
-                install — two installs if you need both.
+                <b>Harnesses:</b> Claude Code and Codex CLI are hook-wired.
+                OpenHands is hookless and scaffolds a sovereign entity instead.
+                One adapter per install — separate installs if you need more
+                than one.
               </p>
-              <p class="rundown-meta">adapters/claude-code · adapters/codex</p>
+              <p class="rundown-meta">--adapter claude-code | codex | openhands</p>
             </div>
             <div class="rundown-item">
               <p>
-                <b>Always-on daemon:</b> macOS today. Linux
+                <b>Always-on daemon and governed seats:</b> macOS today. Linux
                 <code>systemd --user</code> and Windows Task Scheduler are
-                planned, not shipped.
+                planned, not shipped. The sandboxed shell a sovereign entity
+                works through is macOS only too; elsewhere it gets the file
+                editor and no shell.
               </p>
               <p class="rundown-meta">launchd user agent · no root</p>
             </div>
