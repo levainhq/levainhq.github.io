@@ -347,13 +347,15 @@
             </div>
             <div class="rundown-item">
               <p>
-                <b>Always-on daemon and governed seats:</b> macOS today. Linux
-                <code>systemd --user</code> and Windows Task Scheduler are
+                <b>Always-on daemon and governed seats:</b> macOS
+                (<code>launchd</code>) and, from 0.5.0, Linux
+                (<code>systemd --user</code>). Windows Task Scheduler is
                 planned, not shipped. The sandboxed shell a sovereign entity
-                works through is macOS only too; elsewhere it gets the file
-                editor and no shell.
+                works through runs on macOS and Linux (bubblewrap); on Linux it
+                has no IP network while the entity's floor blocks connections
+                back to the host. Elsewhere it gets the file editor and no shell.
               </p>
-              <p class="rundown-meta">launchd user agent · no root</p>
+              <p class="rundown-meta">launchd user agent · systemd --user unit · no root</p>
             </div>
             <div class="rundown-item">
               <p>
