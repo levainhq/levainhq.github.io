@@ -153,10 +153,11 @@
                 package, so it renders offline with no CDN. No vendor host, no
                 account, nothing to revoke. Two model calls can leave the
                 machine, both on a sovereign entity: the conversation
-                (<code>--model</code>) and the wrap that composes its memory
-                (<code>--composer</code>). Both default to
+                (<code>levain run --model</code>, which also composes the memory
+                when <code>run</code> wraps itself) and a standalone
+                <code>levain wrap --composer</code>. Both default to
                 <code>glm-5.2:cloud</code>, served through Ollama Cloud; point
-                both at a plain local Ollama name to keep them on your machine.
+                them at a plain local Ollama name to keep them on your machine.
               </p>
             </div>
             <p class="receipt">
