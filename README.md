@@ -7,10 +7,15 @@ Static, no build step. Deployed by GitHub Pages from `main`.
 
 ## Design
 
-Runs on the Clapham estate design system — `tokens.css` and `site.css` are
-shared verbatim with [phillipclapham.com](https://phillipclapham.com), so the
-person and the product read as unmistakably kin. `levain.css` holds only what a
-product site needs and a personal site does not (code blocks, the pull-quote).
+Runs on the Clapham estate design system. `tokens.css` is shared verbatim with
+[phillipclapham.com](https://phillipclapham.com); `site.css` was forked from
+the same file and has since diverged in both directions (the card-tilt rule
+lives only here, some estate additions only there), so never sync it by
+copying the file across. Re-derive the difference with
+`diff site.css <(git -C ../phill-site show origin/main:site.css)` (bash or zsh,
+with a `phill-site` sibling checkout, after a `git fetch` there).
+`levain.css` holds only what a product site needs and a personal site does not
+(code blocks, the pull-quote).
 
 The cognitive-pulse field is deliberately *not* shared: it is the person's hero,
 not the product's.
@@ -19,9 +24,10 @@ not the product's.
 
 Every claim in the ledger carries a receipt. The receipts that carry a figure
 were re-derived against `levainhq/levain@7370778` (origin/main, 2026-09-30):
-the firing tier's import edges by walking every file's AST, the version from
-PyPI, the anneal pin from `pyproject.toml`, the kernel's export count from
-`levain/kernel.py`. Counts of the live codebase (lines, tests) are deliberately NOT printed on
+the firing tier's import edges by walking every file's AST, the anneal pin from
+`pyproject.toml`, the kernel's export count from `levain/kernel.py`. The pin was
+re-checked against the `v0.5.0` tag (`3052f04`, 2026-10-02). The Levain version
+is never typed into the page: `version-badges.js` reads it from PyPI. Counts of the live codebase (lines, tests) are deliberately NOT printed on
 the page: a count rots the day after it is written, and the test count has to
 come from running the suite, never from grepping `def test_`. The 96 → 549
 accrual figures are exempt because they are a fixed historical snapshot. If you add a

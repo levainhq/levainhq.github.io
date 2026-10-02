@@ -7,18 +7,19 @@
  * both times remembering failed. An invariant beats discipline, so the numbers
  * that CAN read themselves now do.
  *
- * PROGRESSIVE ENHANCEMENT, DELIBERATELY. Every badge ships with the correct
- * value already in the HTML. This script only ever replaces it with a fresher
- * one. If PyPI is down, the fetch fails, or JS never runs, the reader sees the
- * hand-typed value — which was accurate the day it was committed. The failure
- * mode is "slightly old," never "blank" and never "undefined".
+ * PROGRESSIVE ENHANCEMENT, DELIBERATELY. The badge ships EMPTY on purpose: a
+ * hand-typed version is wrong the day the next release lands (an old number sat beside
+ * a claim that needed the new release). This script fills it from PyPI. If PyPI is down, the
+ * fetch fails, or JS never runs, the reader sees no version at all, which is
+ * blank rather than wrong. A badge that does carry baked text still works: it
+ * is replaced. The version the neighbouring receipts were last audited against
+ * rides in a `data-audited` attribute (never rendered); when live PyPI differs
+ * from it, the console drift warning fires.
  *
  * WHAT IT CANNOT DO, STATED PLAINLY. Test counts are not published in
  * any machine-readable place — they come from RUNNING the suites — so the page
- * prints none. What this does: when a package's live version differs from the
- * one baked into this page, it warns in the console, because a version bump is
- * the best available signal that the other receipts next to it have also moved. Drift you
- * can see beats drift you cannot.
+ * prints none. The badge only covers the version number itself; the receipts
+ * beside it (the anneal pin) are hand-typed and do not follow a release.
  *
  * PyPI's JSON API sends `access-control-allow-origin: *` (verified against the
  * live endpoint), so this needs no proxy and no build step.
@@ -56,7 +57,8 @@
       if (!raw) return null;
       var hit = JSON.parse(raw);
       if (!hit || typeof hit.v !== "string") return null;
-      if (Date.now() - hit.t > TTL_MS) return null;
+      var age = Date.now() - hit.t;
+      if (typeof hit.t !== "number" || !(age >= 0 && age <= TTL_MS)) return null;
       return hit.v;
     } catch (e) {
       return null; // private mode, quota, corrupt entry — treat as a miss
@@ -77,7 +79,9 @@
   function paint(name, live) {
     var drifted = null;
     packages[name].forEach(function (el) {
-      var baked = (el.textContent || "").replace(/^v/, "").trim();
+      // The badge is empty by design; the version the neighbouring receipts
+      // were audited against rides in data-audited, so drift is still visible.
+      var baked = (el.getAttribute("data-audited") || "").trim();
       if (baked && baked !== live) drifted = baked;
       el.textContent = "v" + live;
       el.setAttribute("title", "Read from PyPI, cached for up to 12 hours.");
@@ -124,8 +128,9 @@
         paint(name, live);
       })
       .catch(function (err) {
-        // Silent for the reader. The baked-in value stands.
-        console.debug("[version-badges] " + name + " left as committed:", err.message);
+        // Silent for the reader. The badge ships empty on purpose, so a failed
+        // fetch leaves it blank rather than showing a stale number.
+        console.debug("[version-badges] " + name + " left blank:", err.message);
       });
   });
 })();

@@ -162,7 +162,7 @@
             </div>
             <p class="receipt">
               <span class="receipt-tag">Shipped</span>
-              <b>Levain <span class="pkg-version" data-pkg="levain">v0.4.8</span></b><br />
+              <b>Levain <span class="pkg-version" data-pkg="levain" data-audited="0.5.0"></span></b><br />
               Apache-2.0<br />
               built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> (pinned &ge;0.9.10,&lt;0.10)<br />
               <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a>
@@ -320,7 +320,9 @@
                 reaches outside the entity halts before it runs. In the
                 interactive REPL the gate is off and you are the check. Setting
                 <code>efferent_gate: "ungated"</code> turns it off everywhere,
-                scheduled seats included. What is still not built: per-domain
+                scheduled seats included. <code>doctor</code> does not re-check
+                that setting on a seat that is already running. What is still
+                not built: per-domain
                 threshold policy, so nothing graduates to unattended action.
               </p>
               <p class="rundown-meta">stated in the source of levain/firing/confinement.py</p>
@@ -356,6 +358,14 @@
                 back to the host. Elsewhere it gets the file editor and no shell.
               </p>
               <p class="rundown-meta">launchd user agent · systemd --user unit · no root</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>One seat at a time:</b> a governed seat runs one entity on
+                one schedule. Coordinating several seats as a fleet is not
+                built yet.
+              </p>
+              <p class="rundown-meta">stated in the Levain README</p>
             </div>
             <div class="rundown-item">
               <p>
