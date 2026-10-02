@@ -87,7 +87,7 @@
     hero: "claim", // the pitch, stated
     ledger: "pair", // claim | receipt, the whole point of the grid
     architecture: "claim", // what the product IS — description, not evidence
-    floor: "receipt", // the confinement floor: mechanisms and line counts
+    floor: "receipt", // the confinement floor: mechanisms and module paths
     boundaries: "receipt", // what it does NOT do — the sharpest evidence here
     install: "claim",
     "build-on-it": "claim",
