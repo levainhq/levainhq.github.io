@@ -26,7 +26,12 @@ Every claim in the ledger carries a receipt. The receipts that carry a figure
 were re-derived against `levainhq/levain@7370778` (origin/main, 2026-09-30):
 the firing tier's import edges by walking every file's AST, the anneal pin from
 `pyproject.toml`, the kernel's export count from `levain/kernel.py`. The pin was
-re-checked against the `v0.5.0` tag (`3052f04`, 2026-10-02). The Levain version
+re-checked against the `v0.5.0` tag (`3052f04`, 2026-10-02). The page's `data-audited`
+baseline is the version its Levain claims were last re-checked against: 0.5.1, against the
+`v0.5.1` CHANGELOG and that tag's anneal pin (`>=0.9.10,<0.10`) (commit `9f0402b`, 2026-10-02).
+Re-derive it with `grep -o 'data-audited="[^"]*"' index.html`; when you re-audit, move both
+together. The Linux bash-refusal sentence was re-derived from the `v0.5.3` CHANGELOG's known
+open issues on 2026-10-03. The Levain version
 is never typed into the page: `version-badges.js` reads it from PyPI. Counts of the live codebase (lines, tests) are deliberately NOT printed on
 the page: a count rots the day after it is written, and the test count has to
 come from running the suite, never from grepping `def test_`. The 96 → 549
