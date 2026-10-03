@@ -162,7 +162,7 @@
             </div>
             <p class="receipt">
               <span class="receipt-tag">Shipped</span>
-              <b>Levain <span class="pkg-version" data-pkg="levain" data-audited="0.5.1"></span></b><br />
+              <b>Levain <span class="pkg-version" data-pkg="levain" data-audited="0.5.4"></span></b><br />
               Apache-2.0<br />
               built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> (pinned &ge;0.9.10,&lt;0.10)<br />
               <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a>
@@ -286,7 +286,7 @@
             </div>
             <div class="rundown-item">
               <p>Denies by absolute path, so a relative-path trick can't walk out of it.</p>
-              <p class="rundown-meta">ancestor-write-deny · hardlink-aware</p>
+              <p class="rundown-meta">ancestor-write-deny · blocks linking a jewel out</p>
             </div>
             <div class="rundown-item">
               <p>Credential stores are opt-in, not always-on: denying their read breaks the entity's own tooling, and operational fit beats purity.</p>
@@ -332,7 +332,10 @@
                 <b>No security absolutes.</b> The confinement floor is real and
                 load-bearing, but it is a floor, not a guarantee. It denies a
                 fixed set of crown-jewel paths and known escape routes, not
-                "everything dangerous." Read the module docstrings in
+                "everything dangerous." It denies paths, not files: a hardlink
+                to a denied file, at a path the floor does not deny, reads that
+                file. That is listed as a known open issue in the changelog.
+                Read the module docstrings in
                 <code>levain/firing/confinement.py</code> before trusting it
                 with something that matters.
               </p>
