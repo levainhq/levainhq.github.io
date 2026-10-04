@@ -27,9 +27,9 @@ were re-derived against `levainhq/levain@7370778` (origin/main, 2026-09-30):
 the firing tier's import edges by walking every file's AST, the anneal pin from
 `pyproject.toml`, the kernel's export count from `levain/kernel.py`. The pin was
 re-checked against the `v0.5.0` tag (`3052f04`, 2026-10-02). The page's `data-audited`
-baseline is the version its Levain claims were last re-checked against: 0.5.11, against the
-`v0.5.11` CHANGELOG (no floor, gate or confinement change since the 0.5.5 re-check; `levain/firing/` is unchanged v0.5.9 to v0.5.11; 0.5.10's auto-memory mirror, on by default, is now stated in the "path you govern" row-note, by Phill's ruling 2026-10-04) and that tag's
-anneal pin (`>=0.9.32,<0.10`, `git show v0.5.11:pyproject.toml`) (2026-10-04). Re-derive the pin
+baseline is the version its Levain claims were last re-checked against: 0.5.12, against the
+`v0.5.12` CHANGELOG (no floor, gate or confinement change since the 0.5.5 re-check; `levain/firing/` is unchanged v0.5.9 to v0.5.12; 0.5.10's auto-memory mirror, on by default, is now stated in the "path you govern" row-note, by Phill's ruling 2026-10-04) and that tag's
+anneal pin (`>=0.9.33,<0.10`, `git show v0.5.12:pyproject.toml`) (2026-10-04). Re-derive the pin
 with `curl -s https://pypi.org/pypi/levain/json` (`requires_dist`) and the baseline with
 `grep -o 'data-audited="[^"]*"' index.html`; when you re-audit, move both together. The Linux
 bash-refusal sentence was re-derived from the `v0.5.3` CHANGELOG's known open issues; the
