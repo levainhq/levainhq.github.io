@@ -162,7 +162,7 @@
             </div>
             <p class="receipt">
               <span class="receipt-tag">Shipped</span>
-              <b>Levain <span class="pkg-version" data-pkg="levain" data-audited="0.5.9"></span></b><br />
+              <b>Levain <span class="pkg-version" data-pkg="levain" data-audited="0.5.11"></span></b><br />
               Apache-2.0<br />
               built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> (pinned &ge;0.9.32,&lt;0.10)<br />
               <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a>
@@ -173,8 +173,12 @@
             <div>
               <p class="row-claim">Nothing reaches long-term memory except through a path you govern.</p>
               <p class="row-note">
-                Every write goes through one governed dispatch that records it, so
-                the writable view doubles as an audit log of what you did. The
+                Every edit you make goes through one governed dispatch that records it, so
+                the writable view doubles as an audit log of what you did. Episodes the
+                entity writes, including the Claude Code memory notes Levain mirrors in
+                (one way, on by default, one setting turns it off), land in anneal's
+                hash-chained audit trail, and only a wrap decides what of them becomes
+                long-term memory. The
                 edit-class and zone grammar is enforced at the surface, not
                 requested politely: read-only regions refuse edits rather than
                 trusting a caller not to try.
