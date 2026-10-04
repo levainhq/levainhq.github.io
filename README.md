@@ -29,7 +29,12 @@ the firing tier's import edges by walking every file's AST, the anneal pin from
 re-checked against the `v0.5.0` tag (`3052f04`, 2026-10-02). The page's `data-audited`
 baseline is the version its Levain claims were last re-checked against: 0.5.9, against the
 `v0.5.9` CHANGELOG (no floor, gate or confinement change since the 0.5.5 re-check; `levain/firing/` is unchanged v0.5.8 to v0.5.9, and changed v0.5.7 to v0.5.8 only in `openhands/entity.py`, a symlink-loop warning on Python 3.13) and that tag's
-anneal pin (`>=0.9.31,<0.10`, `git show v0.5.9:pyproject.toml`) (2026-10-04). Re-derive the pin
+anneal pin (`>=0.9.31,<0.10`, `git show v0.5.9:pyproject.toml`) (2026-10-04). The displayed pin is
+newer than the baseline: it is `>=0.9.32,<0.10`, re-derived from levain 0.5.11 on PyPI
+(`requires_dist`, `git show v0.5.11:pyproject.toml`) (2026-10-04); `levain/firing/` is unchanged
+v0.5.9 to v0.5.11, but 0.5.10 adds the auto-memory mirror (on by default) and the baseline stays
+0.5.9 until the "Nothing reaches long-term memory except through a path you govern" sentence is
+re-judged against it. Re-derive the pin
 with `curl -s https://pypi.org/pypi/levain/json` (`requires_dist`) and the baseline with
 `grep -o 'data-audited="[^"]*"' index.html`; when you re-audit, move both together. The Linux
 bash-refusal sentence was re-derived from the `v0.5.3` CHANGELOG's known open issues; the
