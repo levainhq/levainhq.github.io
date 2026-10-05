@@ -19,7 +19,9 @@
  * WHAT IT CANNOT DO, STATED PLAINLY. Test counts are not published in
  * any machine-readable place — they come from RUNNING the suites — so the page
  * prints none. The badge only covers the version number itself; the receipts
- * beside it (the anneal pin) are hand-typed and do not follow a release.
+ * beside it (export counts, the audited claims) are hand-typed and do not
+ * follow a release. The anneal pin is NOT among them: it is read from the same
+ * PyPI payload's requires_dist, so it follows the badge with no edit.
  *
  * PyPI's JSON API sends `access-control-allow-origin: *` (verified against the
  * live endpoint), so this needs no proxy and no build step.
@@ -36,6 +38,38 @@
 
   var badges = document.querySelectorAll("[data-pkg]");
   if (!badges.length) return;
+
+  // The anneal pin: an empty [data-pin-of] span is filled from the badge
+  // package's requires_dist entry for that dependency (no `extra ==` marker),
+  // e.g. "anneal-memory<0.10,>=0.9.39" -> "(pinned \u22650.9.39,<0.10)". Blank on
+  // any failure, like the badge.
+  var pinEls = document.querySelectorAll("[data-pin-of]");
+
+  function pinFor(requires, dep) {
+    if (!Array.isArray(requires)) return null;
+    for (var i = 0; i < requires.length; i++) {
+      var r = String(requires[i]);
+      if (r.indexOf(";") !== -1) continue; // extras / markers are not the pin
+      if (r.toLowerCase().indexOf(dep.toLowerCase()) !== 0) continue;
+      var spec = r.slice(dep.length).replace(/\s+/g, "");
+      if (!/^[<>=!~][\w.,<>=!~*+-]{0,40}$/.test(spec)) return null;
+      // PyPI lists clauses in arbitrary order; show lower bound first.
+      var parts = spec.split(",").sort(function (a, b) {
+        return (a.charAt(0) === ">" ? 0 : 1) - (b.charAt(0) === ">" ? 0 : 1);
+      });
+      return parts.join(",");
+    }
+    return null;
+  }
+
+  function paintPins(name, requires) {
+    pinEls.forEach(function (el) {
+      var dep = el.getAttribute("data-pin-of");
+      var pin = dep && pinFor(requires, dep);
+      if (!pin) return;
+      el.textContent = "(pinned " + pin.replace(">=", "\u2265") + ")";
+    });
+  }
 
   // One request per distinct package, no matter how many badges reference it.
   var packages = {};
@@ -58,18 +92,19 @@
       var hit = JSON.parse(raw);
       if (!hit || typeof hit.v !== "string") return null;
       var age = Date.now() - hit.t;
+      if (pinEls.length && !Array.isArray(hit.r)) return null; // pre-pin entry
       if (typeof hit.t !== "number" || !(age >= 0 && age <= TTL_MS)) return null;
-      return hit.v;
+      return hit;
     } catch (e) {
       return null; // private mode, quota, corrupt entry — treat as a miss
     }
   }
 
-  function remember(name, version) {
+  function remember(name, version, requires) {
     try {
       localStorage.setItem(
         "pkgver:" + name,
-        JSON.stringify({ v: version, t: Date.now() })
+        JSON.stringify({ v: version, r: requires, t: Date.now() })
       );
     } catch (e) {
       /* caching is an optimisation, never a requirement */
@@ -97,7 +132,7 @@
           live +
           " on PyPI but this page was written against " +
           drifted +
-          ". The receipts near this badge (the anneal pin, export counts) " +
+          ". The receipts near this badge (export counts, audited claims) " +
           "are hand-typed and cannot self-update — check them."
       );
     }
@@ -106,7 +141,8 @@
   Object.keys(packages).forEach(function (name) {
     var hit = cached(name);
     if (hit) {
-      paint(name, hit);
+      paint(name, hit.v);
+      paintPins(name, hit.r);
       return;
     }
 
@@ -124,8 +160,12 @@
         if (typeof live !== "string" || !/^[\w.+!-]{1,32}$/.test(live)) {
           throw new Error("unusable version in payload");
         }
-        remember(name, live);
+        var req = (data.info.requires_dist || []).filter(function (r) {
+          return typeof r === "string" && r.length < 200;
+        });
+        remember(name, live, req);
         paint(name, live);
+        paintPins(name, req);
       })
       .catch(function (err) {
         // Silent for the reader. The badge ships empty on purpose, so a failed
