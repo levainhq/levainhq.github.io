@@ -88,10 +88,11 @@
                 Agents that answer to <em>you</em>.
               </p>
               <p class="hero-sub">
-                Levain wraps Claude Code and Codex. Every permission prompt
-                either one raises goes into a single queue, and a signed
-                standing grant or a signed answer from you settles it, at your
-                desk or on your phone. Memory persists across sessions, in a
+                Levain wraps Claude Code and Codex. Each permission prompt
+                either one's hook receives goes into a single queue. A signed
+                standing grant settles the routine, and in away mode a signed
+                answer from you settles the rest, at your desk or on your
+                phone. Memory persists across sessions, in a
                 store you own and can read from outside any session. And a
                 directive before every prompt pushes back on the habits an
                 agent's training rewards. Apache-2.0. Python 3.12 and up.
@@ -129,7 +130,7 @@
             <p class="receipt">
               <span class="receipt-tag">Signed</span>
               <b>grant &le; 30 days &middot; answer = an enrolled key's signature</b><br />
-              every answer carries the head of an append-only receipt log<br />
+              every signed answer carries the head of an append-only receipt log<br />
               <code>levain consent receipts verify</code> checks each one<br />
               <a href="https://github.com/levainhq/levain#the-consent-queue" target="_blank" rel="noopener">read the queue</a>
             </p>
@@ -144,7 +145,7 @@
                 UI from the package, so it renders offline with no CDN. Levain
                 adds no vendor host and no account. The sovereign entity, which
                 ships as is, runs on <code>glm-5.2:cloud</code> through Ollama
-                Cloud by default, so its conversation leaves your machine
+                Cloud by default, so its episode content leaves your machine
                 unless you give it a plain local model name.
               </p>
             </div>
@@ -191,8 +192,8 @@
             </div>
             <p class="receipt">
               <span class="receipt-tag">Pre-registered</span>
-              <b>10 runs per condition, Holm-adjusted p = 0.011</b><br />
-              one-sided Fisher exact, written down and hashed before the runs<br />
+              <b>the one contrast of four that cleared: Holm-adjusted p = 0.011</b><br />
+              10 runs per condition, one-sided Fisher exact, hashed before the runs; both primary contrasts failed, and the doc says what it did not show<br />
               <a href="https://github.com/levainhq/levain/blob/main/docs/evidence/deferral-probe.md" target="_blank" rel="noopener">deferral-probe.md</a>
             </p>
           </div>
@@ -238,10 +239,10 @@
               <h3>It holds what the agent does to your authority</h3>
               <p>
                 One consent queue across Claude Code and Codex. Each permission
-                prompt either agent raises is filed there, and you settle it
-                with a signed standing grant or a signed answer. In away mode,
-                everything a grant doesn't cover waits for your signed
-                decision. Desk or phone.
+                prompt either agent's hook receives is filed there. A signed
+                standing grant settles the routine. In away mode, everything a
+                grant doesn't cover waits for your signed decision. Desk or
+                phone.
               </p>
               <p class="card-meta">consent · grants · away mode · receipts</p>
             </article>
@@ -296,12 +297,16 @@
                 only after you pair it with a short code, and a passkey (Face
                 ID, Touch ID or a device PIN) signs the answer. Put an https
                 proxy you trust in front of the cockpit; Tailscale works.
+                Signing from the phone needs the cockpit started with
+                <code>--sign-host</code>, and the README has the exact
+                command.
               </p>
               <p class="rundown-meta">levain cockpit pair --short · levain cockpit pair --list</p>
             </div>
             <div class="rundown-item">
               <p>
-                <b>When nobody answers.</b> A hold on a gated call that ends
+                <b>When nobody answers.</b> A hold on a gated call (an edit of
+                agent config or hooks, or <code>levain push</code>) that ends
                 with no signed answer does not reject the call. It is marked
                 undecided, the agent is told the action was not taken and is
                 still open, and you rule on it later.
@@ -314,7 +319,8 @@
                 Words you drop from the cockpit, the phone or the terminal wake
                 it when nobody holds the role, and its replies show on the
                 cockpit's Coordinator panel. Silence is not "heard": a drop
-                with no reply after 10 minutes shows as unanswered.
+                from the cockpit or the phone with no reply after 10 minutes
+                shows as unanswered.
               </p>
               <p class="rundown-meta">levain drop · levain coord status · levain coord reply</p>
             </div>
@@ -339,11 +345,13 @@
             reads the words and the owner before it changes anything.
           </p>
           <p class="prose">
-            The limits are stated in the README: signatures prove which key
+            The limits are stated in
+            <a href="https://github.com/levainhq/levain#share-a-projects-decisions-across-a-team--levain-team" target="_blank" rel="noopener">the Levain README</a>:
+            signatures prove which key
             wrote each commit, not that your git host showed you every commit,
             and edits made through Bash are not intercepted.
           </p>
-          <p class="card-meta">levain team init · record · consolidate · levain team view</p>
+          <p class="card-meta">levain team init · record decision · consolidate · levain team view</p>
         </section>
       </div>
 
@@ -380,7 +388,7 @@
           <div class="rundown">
             <div class="rundown-item">
               <p>Standard credential stores are denied in every drive unless the entity sets <code>deny_standard_creds</code> to false. Reading a file is not an action the gate would ever ask about, so the floor denies the read instead.</p>
-              <p class="rundown-meta">~/.config/gh · ~/.aws · ~/.netrc · the macOS Keychain</p>
+              <p class="rundown-meta">~/.config/gh · ~/.aws/credentials · ~/.netrc · the macOS Keychain</p>
             </div>
             <div class="rundown-item">
               <p>Every action a scheduled seat or a <code>run --task</code> entity takes that reaches outside itself halts before it runs, with exit code 4 and the log left for you to read. The gate reads the tool, never the model's opinion of itself.</p>
@@ -422,6 +430,28 @@
                 <code>git push</code> in a shell is not gated.
               </p>
               <p class="rundown-meta">levain push · levain publish pypi | npm</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>Signed answers need away mode.</b> With it off, the hook
+                asks only your grants, and with none matching, the agent's own
+                dialog asks you, as it would without Levain. On a Mac, away
+                mode turns on by itself after 10 minutes with no keyboard,
+                mouse or trackpad input; elsewhere only your word turns it on.
+              </p>
+              <p class="rundown-meta">levain consent away on | off | auto</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>Start Claude Code at the workspace root.</b> When the
+                workspace is nested inside a larger repository, is a linked
+                worktree or submodule, or is not a git folder, the hooks live in
+                <code>.claude/settings.json</code>, which Claude Code reads only
+                from the folder a session starts in. A session started in a
+                subfolder runs none of them: no consent queue, no gate, no
+                memory hooks.
+              </p>
+              <p class="rundown-meta">levain update moves a workspace to the local layout after git init</p>
             </div>
             <div class="rundown-item">
               <p>
