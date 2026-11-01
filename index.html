@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <title>Levain | Portable cognitive-partnership memory and methodology</title>
+    <title>Levain | Consent queue and memory harness for Claude Code and Codex</title>
     <meta
       name="description"
-      content="Levain is a portable cognitive-partnership memory and methodology kit. Ship the seed that grows a practice, not the grown practice. Memory that persists across sessions, in a store you own and can read, inspect and edit from outside any session."
+      content="Levain wraps Claude Code and Codex. One consent queue settled by signed standing grants or signed answers from you, an audit trail, and memory that persists across sessions in a store you own and can read."
     />
     <meta name="author" content="Phillip Clapham" />
     <meta name="theme-color" content="#100e0b" />
@@ -19,10 +19,10 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://levainhq.com" />
-    <meta property="og:title" content="Levain | Ship the seed, not the fossil" />
+    <meta property="og:title" content="Levain | Agents that answer to you" />
     <meta
       property="og:description"
-      content="Portable cognitive-partnership memory and methodology. Sovereignty enforced by the import graph, not asserted in prose. Apache-2.0, memory you own."
+      content="A consent queue and memory harness for Claude Code and Codex. Signed grants, signed answers, an audit trail, and memory you own. Apache-2.0."
     />
     <meta property="og:image" content="https://levainhq.com/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -30,10 +30,10 @@
     <meta property="og:image:alt" content="The Levain mark: an orange flame ribbon wrapped around a pale blue glass hexagon, on near-black." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://levainhq.com/assets/og-image.png" />
-    <meta name="twitter:title" content="Levain | Ship the seed, not the fossil" />
+    <meta name="twitter:title" content="Levain | Agents that answer to you" />
     <meta
       name="twitter:description"
-      content="Portable cognitive-partnership memory and methodology. Sovereignty enforced by the import graph, not asserted in prose."
+      content="A consent queue and memory harness for Claude Code and Codex. Signed grants, signed answers, an audit trail, and memory you own."
     />
 
     <script>
@@ -82,19 +82,19 @@
         <div class="wrap">
           <section class="hero">
             <div>
-              <p class="eyebrow">Cognitive-partnership infrastructure</p>
+              <p class="eyebrow">Consent queue and memory harness</p>
               <h1 class="wordmark">Levain</h1>
               <p class="hero-claim">
-                Ship the seed, not the <em>fossil</em>.
+                Agents that answer to <em>you</em>.
               </p>
               <p class="hero-sub">
-                A grown cognitive-partnership methodology can't be shipped as a
-                methodology. Hand someone the finished artifact and they get a
-                fossil. So Levain ships the engine that grows one — a memory
-                substrate you own, a methodology seed, an activation layer that
-                fires on its own, and a scripted onboarding. Your practice
-                accretes from your own sessions, which is why it sticks, and why
-                it's yours.
+                Levain wraps Claude Code and Codex. Every permission prompt
+                either one raises goes into a single queue, and a signed
+                standing grant or a signed answer from you settles it, at your
+                desk or on your phone. Memory persists across sessions, in a
+                store you own and can read from outside any session. And a
+                directive before every prompt pushes back on the habits an
+                agent's training rewards. Apache-2.0. Python 3.12 and up.
               </p>
               <p class="hero-links">
                 <a href="#install">Install it</a>
@@ -115,21 +115,85 @@
 
           <div class="row">
             <div>
-              <p class="row-claim">Sovereignty is a property of the import graph.</p>
+              <p class="row-claim">A message that says yes is never authority.</p>
               <p class="row-note">
-                The firing tier — everything that lets an open model act as a
-                sovereign entity — imports nothing from the rest of the package.
-                Not by convention, not by review discipline. It physically
-                cannot reach back into the kit, which is what makes it
-                harness-neutral rather than merely described that way.
+                Only a signature from an enrolled key is. The queue checks each
+                answer against a signed authority log before the hook delivers
+                it, so an agent can't type approval on your behalf. For the
+                routine case you sign a standing grant: one agent, exact tools,
+                one workspace, thirty days at most. Shell commands and edits to
+                the agent's own config and hooks are never answerable by a
+                grant.
               </p>
             </div>
             <p class="receipt">
-              <span class="receipt-tag">Structural</span>
-              <b>levain/firing/ &rarr; zero outward edges</b><br />
-              every module in the tier, the OpenHands sub-package included<br />
-              checked by walking each import, function-level ones too<br />
-              <a href="https://github.com/levainhq/levain/tree/main/levain/firing" target="_blank" rel="noopener">read the tier</a>
+              <span class="receipt-tag">Signed</span>
+              <b>grant &le; 30 days &middot; answer = an enrolled key's signature</b><br />
+              every answer carries the head of an append-only receipt log<br />
+              <code>levain consent receipts verify</code> checks each one<br />
+              <a href="https://github.com/levainhq/levain#the-consent-queue" target="_blank" rel="noopener">read the queue</a>
+            </p>
+          </div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">Your memory lives on your machine, in a store you own.</p>
+              <p class="row-note">
+                The store is a local SQLite file. <code>levain serve</code>, the
+                live browser view of it, binds loopback only and serves its own
+                UI from the package, so it renders offline with no CDN. Levain
+                adds no vendor host and no account. The sovereign entity, which
+                ships as is, runs on <code>glm-5.2:cloud</code> through Ollama
+                Cloud by default, so its conversation leaves your machine
+                unless you give it a plain local model name.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Shipped</span>
+              <b>Levain <span class="pkg-version" data-pkg="levain" data-audited="0.11.27"></span></b><br />
+              Apache-2.0<br />
+              built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> <span class="pkg-pin" data-pin-of="anneal-memory"></span><br />
+              <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a>
+            </p>
+          </div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">Nothing reaches long-term memory except through a path you govern.</p>
+              <p class="row-note">
+                Every edit you make goes through one governed dispatch that
+                records it, so the writable view doubles as an audit log of
+                what you did. Every governed change is recorded in a
+                tamper-evident log, so you can prove it. Claude Code's own
+                memory notes are mirrored in, one way and on by default, with
+                one setting to turn it off.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Governed</span>
+              <b>one write path, one audit envelope</b><br />
+              zones <code>identity</code> / <code>operate</code> / <code>mind</code><br />
+              extensions ride the same auth, confirm and audit envelope
+            </p>
+          </div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">A line of text loaded at launch changes what an agent does.</p>
+              <p class="row-note">
+                In my own harness, one stop instruction written too literally
+                made the agent stand down on work it should have kept doing 6
+                times out of 10. With one correcting line loaded at launch it
+                was 0 out of 10. It's one prompt in my harness rather than
+                Levain's shipped directives, so read it as a demonstration, not
+                a benchmark. It's still the reason none of this is decoration.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Pre-registered</span>
+              <b>10 runs per condition, Holm-adjusted p = 0.011</b><br />
+              one-sided Fisher exact, written down and hashed before the runs<br />
+              <a href="https://github.com/levainhq/levain/blob/main/docs/evidence/deferral-probe.md" target="_blank" rel="noopener">deferral-probe.md</a>
             </p>
           </div>
 
@@ -141,7 +205,7 @@
                 file rendered at four points across five calendar months: it grew,
                 hit one architectural cliff, then locked into a shape and kept
                 densifying inside it. Your week one looks like the first
-                snapshot — not the last, which is what this operator's partnership
+                snapshot, not the last, which is what this operator's partnership
                 grew into.
               </p>
             </div>
@@ -152,55 +216,6 @@
               <a href="https://github.com/levainhq/levain/blob/main/examples/accrual/growth_timeline.md" target="_blank" rel="noopener">growth_timeline.md</a>
             </p>
           </div>
-
-          <div class="row">
-            <div>
-              <p class="row-claim">Your memory lives on your machine, in a store you own.</p>
-              <p class="row-note">
-                The store is a local SQLite file. The browser view binds loopback
-                only and refuses non-loopback hosts. It serves its own UI from the
-                package, so it renders offline with no CDN. No vendor host, no
-                account, nothing to revoke. Two model calls can leave the
-                machine, both on a sovereign entity: the conversation
-                (<code>levain run --model</code>, which also composes the memory
-                when <code>run</code> wraps itself) and a standalone
-                <code>levain wrap --composer</code>. Both default to
-                <code>glm-5.2:cloud</code>, served through Ollama Cloud; point
-                them at a plain local Ollama name to keep them on your machine.
-              </p>
-            </div>
-            <p class="receipt">
-              <span class="receipt-tag">Shipped</span>
-              <b>Levain <span class="pkg-version" data-pkg="levain" data-audited="0.5.12"></span></b><br />
-              Apache-2.0<br />
-              built on <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">anneal-memory</a> <span class="pkg-pin" data-pin-of="anneal-memory"></span><br />
-              <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a>
-            </p>
-          </div>
-
-          <div class="row">
-            <div>
-              <p class="row-claim">Nothing reaches long-term memory except through a path you govern.</p>
-              <p class="row-note">
-                Every edit you make goes through one governed dispatch that records it, so
-                the writable view doubles as an audit log of what you did. Episodes the
-                entity writes, including the Claude Code memory notes Levain mirrors in
-                (one way, on by default, one setting turns it off), land in anneal's
-                hash-chained audit trail, and only a wrap decides what of them becomes
-                long-term memory. The
-                edit-class and zone grammar is enforced at the surface, not
-                requested politely: read-only regions refuse edits rather than
-                trusting a caller not to try.
-              </p>
-            </div>
-            <p class="receipt">
-              <span class="receipt-tag">Governed</span>
-              <b>one write path, one audit envelope</b><br />
-              zones <code>identity</code> / <code>operate</code> / <code>mind</code><br />
-              edit classes <code>A</code> / <code>B</code> / <code>C</code><br />
-              extensions ride the same auth, confirm and audit envelope
-            </p>
-          </div>
         </section>
       </div>
 
@@ -209,51 +224,52 @@
       <div class="wrap">
         <section class="section" id="architecture">
           <h2 class="section-title">What's actually in the wheel</h2>
-          <p class="section-sub">Three products, one install</p>
+          <p class="section-sub">Three jobs, one install</p>
           <p class="map-lede">
-            Levain is usually described as a kit, which is true and incomplete.
-            It ships three distinct things that share a substrate. The third has
-            been in the wheel for a while without a public description; this is it.
+            I run 10 to 15 agents at a time, and the permission prompt was the
+            first thing that broke. Babysit every prompt and the agents sit
+            frozen at a dialog nobody's looking at. Skip permissions and the
+            agent acts with your full authority while nothing checks it first.
+            Levain does three things at once. They only work together.
           </p>
 
           <div class="card-grid">
             <article class="card">
-              <h3>The kit</h3>
+              <h3>It holds what the agent does to your authority</h3>
               <p>
-                A memory substrate you own, a methodology-core seed, an
-                activation layer wired through your harness's hooks, and a
-                scripted onboarding that fills the seed so your partner is
-                uniquely yours from session one.
+                One consent queue across Claude Code and Codex. Each permission
+                prompt either agent raises is filed there, and you settle it
+                with a signed standing grant or a signed answer. In away mode,
+                everything a grant doesn't cover waits for your signed
+                decision. Desk or phone.
               </p>
-              <p class="card-meta">levain init · seed · adapters · hooks</p>
+              <p class="card-meta">consent · grants · away mode · receipts</p>
             </article>
 
             <article class="card">
-              <h3>The operator surface</h3>
+              <h3>It lets the agent become someone</h3>
               <p>
-                Your partner's memory normally only exists inside a session.
-                These look at it from outside, and let you steer it: a terminal
-                glance, a full-screen TUI, and a live loopback browser view that
-                turns writable with one flag.
+                Memory that persists across sessions: episodes, a rolling
+                summary your partner reads to orient each conversation, and
+                patterns that carry the episodes they rest on as cited
+                evidence. The seed gives the agent facts and a method, never a
+                personality. It grows its own shape from what it lives.
+                Two people who install Levain shouldn't end up with the same
+                partner.
               </p>
-              <p class="card-meta">dashboard · tui · serve · focus</p>
+              <p class="card-meta">episodes · wrap · crystallized patterns · open loops</p>
             </article>
 
             <article class="card">
-              <h3>The sovereign entity runtime</h3>
+              <h3>It works on how the agent behaves</h3>
               <p>
-                An entity REPL on an open model, and a consolidate that folds
-                what it learned into its own lasting memory: you run it with
-                <code>levain wrap</code>, and a governed seat runs it itself
-                after a turn once enough has built up. Underneath sits the
-                firing tier: the harness-neutral contract, the presence seam,
-                the isolation guard, and the confinement floor. The same entity
-                can run on a schedule as a governed seat, and by default every
-                action it takes that reaches outside itself halts before it
-                runs and leaves the log for you to read. That default can be
-                switched off per entity; it is not a lock.
+                The seed and a short posture file sit at the start of the
+                context, and a hook adds one of several differently-worded
+                directives before every prompt, so the pressure lands at both
+                ends. When you correct a drift, that becomes an episode, and
+                over time those episodes become the agent's own calibration.
               </p>
-              <p class="card-meta">run · wrap · daemon install-seat · levain/firing/</p>
+              <p class="card-meta">activation · posture · directives · calibration</p>
             </article>
           </div>
         </section>
@@ -262,48 +278,113 @@
       <hr class="seam" />
 
       <div class="wrap">
-        <section class="section" id="floor">
-          <h2 class="section-title">The confinement floor</h2>
-          <p class="section-sub">The polarity is inverted on purpose</p>
-
+        <section class="section" id="operate">
+          <h2 class="section-title">Look at it, and answer from anywhere</h2>
+          <p class="section-sub">The cockpit, the phone and the coordinator</p>
           <p class="prose">
-            A sandbox for a coding agent is normally a jail: deny by default,
-            then allow the workspace. That shape is wrong for an entity that is
-            supposed to do real work on a real machine — it spends its life
-            fighting the cage, and every escape hatch you cut weakens the whole
-            thing.
-          </p>
-
-          <p class="pull-quote">
-            The step-6 file jail was <em>(deny default) &rarr; allow the
-            workspace</em> — a JAIL. A replacement inverts it: <em>(allow
-            default) &rarr; DENY the crown jewels.</em>
-          </p>
-
-          <p class="prose">
-            So the floor allows by default and denies a small, explicit,
-            absolute-path-pinned set: the sovereignty crown jewels. The entity
-            works like any normal shell, and the handful of things that must
-            never be readable or writable stay denied whatever the model is
-            told, across every route the floor knows how to close. It is a
-            floor, not a guarantee: the source names the routes it has not
-            closed yet. The module needs only the standard
-            library and one sibling inside the firing tier, so the floor is
-            unit-testable in complete isolation from the thing it protects.
+            Your partner's memory normally only exists inside a session.
+            <code>levain serve</code> shows it from outside: memory health,
+            crystallized patterns, open loops, your state line, and in the
+            Decisions panel the consent requests waiting on you. It is read-only
+            until you pass <code>--write</code>.
           </p>
 
           <div class="rundown">
             <div class="rundown-item">
-              <p>The most load-bearing module in the package.</p>
-              <p class="rundown-meta">levain/firing/confinement.py · stdlib only</p>
+              <p>
+                <b>Answer from your phone.</b> The phone reaches the cockpit
+                only after you pair it with a short code, and a passkey (Face
+                ID, Touch ID or a device PIN) signs the answer. Put an https
+                proxy you trust in front of the cockpit; Tailscale works.
+              </p>
+              <p class="rundown-meta">levain cockpit pair --short · levain cockpit pair --list</p>
             </div>
             <div class="rundown-item">
-              <p>Denies by absolute path, so a relative-path trick can't walk out of it.</p>
-              <p class="rundown-meta">ancestor-write-deny · blocks linking a jewel out</p>
+              <p>
+                <b>When nobody answers.</b> A hold on a gated call that ends
+                with no signed answer does not reject the call. It is marked
+                undecided, the agent is told the action was not taken and is
+                still open, and you rule on it later.
+              </p>
+              <p class="rundown-meta">levain consent rule · levain consent deliver</p>
             </div>
             <div class="rundown-item">
-              <p>Credential stores are opt-in, not always-on: denying their read breaks the entity's own tooling, and operational fit beats purity.</p>
-              <p class="rundown-meta">deny_standard_creds · default off</p>
+              <p>
+                <b>The coordinator.</b> One session holds the coordinator role.
+                Words you drop from the cockpit, the phone or the terminal wake
+                it when nobody holds the role, and its replies show on the
+                cockpit's Coordinator panel. Silence is not "heard": a drop
+                with no reply after 10 minutes shows as unanswered.
+              </p>
+              <p class="rundown-meta">levain drop · levain coord status · levain coord reply</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="team">
+          <h2 class="section-title">A team's decisions, in git</h2>
+          <p class="section-sub">One engineer's partner, then everyone's</p>
+          <p class="prose">
+            On a team, the decisions that matter (the client said no, leave
+            this module alone) live in one person's head. Then the next
+            engineer's agent simplifies them away. <code>levain team</code>
+            keeps git as the wire. Each decision is a signed, hash-chained
+            entry on an orphan branch of the project's own repository, with the
+            decider's own words verbatim. A Claude Code hook shows the agent a
+            teammate's ruling at the edit it governs and stops it once, so it
+            reads the words and the owner before it changes anything.
+          </p>
+          <p class="prose">
+            The limits are stated in the README: signatures prove which key
+            wrote each commit, not that your git host showed you every commit,
+            and edits made through Bash are not intercepted.
+          </p>
+          <p class="card-meta">levain team init · record · consolidate · levain team view</p>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="floor">
+          <h2 class="section-title">The sovereign entity</h2>
+          <p class="section-sub">Ships as is, with no new features for 1.0</p>
+
+          <p class="prose">
+            <code>levain init --adapter openhands</code> scaffolds something
+            different from the hook-wired adapters: an entity that is its own
+            partner, with its own identity and its own memory store, never a
+            hook into your Claude Code or Codex session. It runs on an open
+            model you choose. You talk to it as a REPL, hand it one task and
+            read the exit code, or run it on a schedule as a governed seat.
+          </p>
+
+          <p class="pull-quote">
+            A sandbox for a coding agent is normally a jail: <em>deny by
+            default, allow the workspace.</em> The floor inverts it: <em>allow
+            by default, deny the crown jewels.</em>
+          </p>
+
+          <p class="prose">
+            The entity works like any normal shell, and a small, explicit set
+            of paths pinned by absolute path stays denied whatever the model
+            is told: <code>~/.anneal-memory</code>, sibling stores and your SSH
+            key material. It is a floor, not a guarantee, and the source names
+            the routes it has not closed yet.
+          </p>
+
+          <div class="rundown">
+            <div class="rundown-item">
+              <p>Standard credential stores are denied in every drive unless the entity sets <code>deny_standard_creds</code> to false. Reading a file is not an action the gate would ever ask about, so the floor denies the read instead.</p>
+              <p class="rundown-meta">~/.config/gh · ~/.aws · ~/.netrc · the macOS Keychain</p>
+            </div>
+            <div class="rundown-item">
+              <p>Every action a scheduled seat or a <code>run --task</code> entity takes that reaches outside itself halts before it runs, with exit code 4 and the log left for you to read. The gate reads the tool, never the model's opinion of itself.</p>
+              <p class="rundown-meta">efferent gate · a default, not a lock</p>
             </div>
           </div>
         </section>
@@ -314,68 +395,88 @@
       <div class="wrap">
         <section class="section" id="boundaries">
           <h2 class="section-title">Boundaries, kept honest</h2>
-          <p class="section-sub">What it does not do yet</p>
+          <p class="section-sub">What it does not do</p>
           <p class="map-lede">
             A floor that oversells itself is worse than no floor, because you
             plan around the coverage you think you have. These limits are
-            recorded in the source itself, not just here.
+            recorded in the README and the source, not just here.
           </p>
 
           <div class="rundown">
             <div class="rundown-item">
               <p>
-                <b>The floor protects the crown jewels and nothing else.</b>
-                With default-allow, a confabulating model can still destroy a
-                real repository, force-push, or pipe a download into a shell,
-                and the floor stops none of it. What covers the rest is a
-                separate mechanism, the efferent gate: when nobody is watching
-                (a scheduled seat, or <code>run --task</code>) every action that
-                reaches outside the entity halts before it runs. In the
-                interactive REPL the gate is off and you are the check. Setting
-                <code>efferent_gate: "ungated"</code> turns it off everywhere,
-                scheduled seats included. What is still
-                not built: per-domain
-                threshold policy, so nothing graduates to unattended action.
+                <b>Levain confines no Claude Code or Codex session.</b> For
+                those agents it installs hooks and consent paths. A consent hook
+                answers a permission prompt. It does not stop an agent running
+                as your user from doing what your user can do outside that
+                prompt.
               </p>
-              <p class="rundown-meta">stated in the source of levain/firing/confinement.py</p>
+              <p class="rundown-meta">stated in the README</p>
             </div>
             <div class="rundown-item">
               <p>
-                <b>No security absolutes.</b> The confinement floor is real and
-                load-bearing, but it is a floor, not a guarantee. It denies a
-                fixed set of crown-jewel paths and known escape routes, not
-                "everything dangerous." It denies paths, and it checks names:
-                before a shell starts it refuses bash if any crown-jewel file has
-                a second name (a hardlink) anywhere on disk, and the file editor
-                refuses a path that is another name for one. A link another
-                process makes after that check, and a copy of a jewel, are not
-                covered; both are listed in the changelog.
-                Read the module docstrings in
-                <code>levain/firing/confinement.py</code> before trusting it
-                with something that matters.
+                <b>Some paths are cooperative.</b> <code>levain push</code> and
+                <code>levain publish</code> ask you for exactly what they will
+                send and wait for your signed answer. They are the path a
+                cooperative agent takes, not a boundary: a plain
+                <code>git push</code> in a shell is not gated.
               </p>
-              <p class="rundown-meta">stated in the README and in levain/firing/confinement.py</p>
+              <p class="rundown-meta">levain push · levain publish pypi | npm</p>
             </div>
             <div class="rundown-item">
               <p>
-                <b>Harnesses:</b> Claude Code and Codex CLI are hook-wired.
-                OpenHands is hookless and scaffolds a sovereign entity instead.
-                One adapter per install — separate installs if you need more
-                than one.
+                <b>Harnesses:</b> Claude Code and Codex CLI are hook-wired and
+                go through the consent queue. OpenHands is hookless and ships
+                as is. One adapter per install, so make separate installs if
+                you need more than one. Codex fires the consent hook in
+                interactive sessions, not in <code>codex exec</code>.
               </p>
               <p class="rundown-meta">--adapter claude-code | codex | openhands</p>
             </div>
             <div class="rundown-item">
               <p>
-                <b>Always-on daemon and governed seats:</b> macOS
-                (<code>launchd</code>) and, from 0.5.0, Linux
-                (<code>systemd --user</code>). Windows Task Scheduler is
-                planned, not shipped. The sandboxed shell a sovereign entity
-                works through runs on macOS and Linux (bubblewrap); on Linux it
-                has no IP network while the entity's floor blocks connections
-                back to the host. On Linux, bash is refused, with no opt-out, when a crown jewel is a SQLite database at the moment the shell starts (the shell could plant or read its sidecar files); move the store into a directory, as <code>~/.anneal-memory/</code> normally is, and the file editor works meanwhile. Since 0.5.3 the shell is also re-checked before every command: if anything it was denied has been replaced, or a database sidecar has appeared beside a jewel, the shell is closed and the next command starts a fresh one over what is there now. The check runs between commands, not during them, so a command that is already running, or one started in the background, keeps its access while it runs, and an encrypted (SQLCipher) store is not recognised. Both are listed as known open issues in the changelog. Elsewhere it gets the file editor and no shell.
+                <b>Codex hook reliability:</b> recent Codex versions have a
+                platform-level hook-trust gap no consumer can work around.
+                <code>levain verify-hooks</code> proves your scripts fire
+                correctly by invoking each one with the JSON a harness would
+                send. Whether Codex itself invokes them at runtime is up to
+                Codex.
               </p>
-              <p class="rundown-meta">launchd user agent · systemd --user unit · no root</p>
+              <p class="rundown-meta">verify-hooks · doctor --invoke</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>No security absolutes.</b> The confinement floor is real and
+                load-bearing, but it denies a fixed set of crown-jewel paths and
+                known escape routes, not "everything dangerous." The efferent
+                gate covers the rest, and it is a default: setting
+                <code>efferent_gate: "ungated"</code> turns it off everywhere,
+                scheduled seats included. In the interactive REPL the gate is
+                off and you are the check.
+              </p>
+              <p class="rundown-meta">stated in levain/firing/confinement.py</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>On macOS, other programs' environments are visible to the
+                entity's shell.</b> Any process can read the environment and
+                command line of every other process running as the same user,
+                and no sandbox rule changes that. <code>sudo levain setup-isolation</code>
+                runs the entity's shell as its own user, which hides them.
+              </p>
+              <p class="rundown-meta">setup-isolation · macOS and Linux</p>
+            </div>
+            <div class="rundown-item">
+              <p>
+                <b>Platforms:</b> the daemon and governed seats run on macOS
+                (<code>launchd</code>) and Linux (<code>systemd --user</code>).
+                Windows is planned, not shipped. The sandboxed shell needs
+                <code>sandbox-exec</code> on macOS or <code>bwrap</code> on
+                Linux. Where there is none, the entity gets the file editor and
+                no shell, never an unconfined one. The Linux specifics,
+                including the Ubuntu AppArmor fix, are in the README.
+              </p>
+              <p class="rundown-meta">levain doctor says which floor is active</p>
             </div>
             <div class="rundown-item">
               <p>
@@ -384,16 +485,6 @@
                 built yet.
               </p>
               <p class="rundown-meta">stated in the Levain README</p>
-            </div>
-            <div class="rundown-item">
-              <p>
-                <b>Codex hook reliability:</b> recent Codex versions have a
-                platform-level hook-trust gap no consumer can work around.
-                <code>levain verify-hooks</code> proves your scripts fire
-                correctly by invoking each one with the JSON a harness would
-                send; whether Codex itself invokes them at runtime is up to Codex.
-              </p>
-              <p class="rundown-meta">verify-hooks · doctor --invoke</p>
             </div>
           </div>
         </section>
@@ -413,13 +504,14 @@ levain init --path ./my-partner</code></pre>
             That creates the directory, runs the interview, lays down the seed,
             registers the adapter you choose, initializes the store at
             <code>.levain/memory.db</code>, and records the exact version set it
-            composed. Then open that directory with Claude Code or Codex and
-            start working.
+            composed. The consent hook is on by default for both adapters. Then
+            open that directory with Claude Code or Codex and start working.
           </p>
 
           <pre class="code"><code>levain init --web                    # browser form instead of the terminal interview
 levain doctor                        # loud, in-environment health check
 levain update                        # reconcile the whole stack to known-good
+levain consent pending               # what's waiting on you
 levain serve                         # live loopback view of your substrate
 levain serve --write                 # ...and steer it, through the governed path</code></pre>
 
@@ -428,7 +520,7 @@ levain serve --write                 # ...and steer it, through the governed pat
             <code>pip</code> alone can't keep aligned: the library, versioned on
             PyPI, and your methodology seed, versioned inside Levain.
             <code>pip</code> keeps the library compatible but is blind to
-            methodology drift — a new memory feature can land as a contradiction
+            methodology drift. A new memory feature can land as a contradiction
             with your older, hand-tuned instructions instead of a clean addition.
             That drift is what breaks a long-running install, so
             <code>doctor</code> and <code>update</code> exist to hold the set
@@ -450,20 +542,54 @@ levain serve --write                 # ...and steer it, through the governed pat
             Import one namespace instead of reaching into internals. Register
             extra read-only panels or extra governed verbs and they ride the same
             auth, confirm and audit envelope as the built-in edits. It's a pure
-            re-export — the governance lives in the substrate, not the surface.
+            re-export, and the governance lives in the substrate, not the surface.
           </p>
           <p class="card-meta">14 exported names · levain.kernel</p>
 
           <p class="prose">
             The division of labour with the substrate is the whole idea:
-            <b>anneal-memory is the substrate; Levain is the harness that fires
-            it.</b> anneal-memory deliberately can't reach into your session — a
+            <b>anneal-memory is the substrate, and Levain is the harness that fires
+            it.</b> anneal-memory deliberately can't reach into your session. A
             memory library that hooked every prompt would forfeit the neutrality
             that lets it run under any harness. So on its own it gives you the
             stores and manual recall, and Levain wires the hooks that surface the
-            right memory automatically. Clean dependency direction, both on PyPI:
-            Levain depends on anneal-memory, never the reverse.
+            right memory automatically. Levain depends on anneal-memory, never the
+            reverse, and both are on PyPI.
           </p>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="one-oh">
+          <h2 class="section-title">Toward 1.0</h2>
+          <p class="section-sub">Future tense on purpose</p>
+          <p class="prose">
+            Everything above is installable today. This section is future tense
+            because none of it is released. 1.0 is a finish, not a freeze: I
+            want what you read here to be a truthful account of what Levain is,
+            not a pile of pieces that don't cohere yet. It stays open source.
+          </p>
+
+          <div class="rundown">
+            <div class="rundown-item">
+              <p>One cockpit, desktop and phone. The cockpit becomes the one responsive surface for both, and its design is a release criterion.</p>
+              <p class="rundown-meta">planned for 1.0</p>
+            </div>
+            <div class="rundown-item">
+              <p>A coordinator every operator runs. The pieces ship now. At 1.0 it is a required role, with a review queue in the cockpit and on the phone.</p>
+              <p class="rundown-meta">planned for 1.0</p>
+            </div>
+            <div class="rundown-item">
+              <p>A dream: a scheduled consolidation of memory with a one-step rollback, run at the time you choose.</p>
+              <p class="rundown-meta">planned for 1.0</p>
+            </div>
+            <div class="rundown-item">
+              <p>Domain packs that declare which kinds of steps are eligible to run on their own. Eligible does not mean unwatched: a step earns that by running gated with a clean record, under a floor it can't buy its way past.</p>
+              <p class="rundown-meta">design only, no install command</p>
+            </div>
+          </div>
         </section>
       </div>
 
@@ -473,10 +599,10 @@ levain serve --write                 # ...and steer it, through the governed pat
         <section class="section" id="audience">
           <h2 class="section-title">Who it's for</h2>
           <p class="prose">
-            Operator-class developers: the people who already feel session
-            amnesia as a real problem and would otherwise build their own fix. If
-            you've written your own substrate-management scripts, you'll
-            recognize the pieces. If <em>continuity file</em> and
+            Operator-class developers: the people who run coding agents for
+            real, feel session amnesia as a real problem, and would otherwise
+            build their own fix. If you've written your own substrate-management
+            scripts, you'll recognize the pieces. If <em>continuity file</em> and
             <em>session-closing reflection</em> don't land yet, this probably
             isn't your tool yet.
           </p>

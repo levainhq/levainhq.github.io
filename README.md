@@ -1,7 +1,7 @@
 # levainhq.com
 
-The product site for [Levain](https://github.com/levainhq/levain) — a portable
-cognitive-partnership memory and methodology kit.
+The product site for [Levain](https://github.com/levainhq/levain) — a consent
+queue and memory harness for Claude Code and Codex.
 
 Static, no build step. Deployed by GitHub Pages from `main`.
 
@@ -22,25 +22,34 @@ not the product's.
 
 ## Content discipline
 
-Every claim in the ledger carries a receipt. The receipts that carry a figure
-were re-derived against `levainhq/levain@7370778` (origin/main, 2026-09-30):
-the firing tier's import edges by walking every file's AST, the anneal pin from
-`pyproject.toml`, the kernel's export count from `levain/kernel.py`. The pin was
-re-checked against the `v0.5.0` tag (`3052f04`, 2026-10-02). The page's `data-audited`
-baseline is the version its Levain claims were last re-checked against: 0.5.12, against the
-`v0.5.12` CHANGELOG (no floor, gate or confinement change since the 0.5.5 re-check; `levain/firing/` is unchanged v0.5.9 to v0.5.12; 0.5.10's auto-memory mirror, on by default, is now stated in the "path you govern" row-note, by Phill's ruling 2026-10-04) and that tag's
-anneal pin (`git show v0.5.12:pyproject.toml`) (2026-10-04). The pin is never typed into the page:
-`version-badges.js` fills it from the live `requires_dist` (`curl -s https://pypi.org/pypi/levain/json`),
-so it follows a release with no edit. Only the baseline is hand-moved
-(`grep -o 'data-audited="[^"]*"' index.html`), and only after a re-audit of the claims. The Linux
-bash-refusal sentence was re-derived from the `v0.5.3` CHANGELOG's known open issues; the
-"checks names" sentence in "No security absolutes", from the `v0.5.5` CHANGELOG's hardlink
-item. The Levain version
-is never typed into the page: `version-badges.js` reads it from PyPI. Counts of the live codebase (lines, tests) are deliberately NOT printed on
-the page: a count rots the day after it is written, and the test count has to
-come from running the suite, never from grepping `def test_`. The 96 → 549
-accrual figures are exempt because they are a fixed historical snapshot. If you add a
-number, add the command that derives it.
+Every claim on the page is sourced to a line in the Levain repo at a named
+release. The copy refresh of 2026-11-01 was derived against the `v0.11.27` tag
+(`f5962e35`): the README at that tag is the source of truth for the product
+description, and a claim the README does not make is checked against the code
+at the tag or removed. A claim table (one row per sentence on the page, each
+with its source file and line, or marked as planned for 1.0) was the review
+artifact; re-derive it rather than trusting it, since a line number rots on the
+next release.
+
+The Levain version is never typed into the page: `version-badges.js` reads it
+from PyPI. The anneal pin is never typed either: the same script fills it from
+the live `requires_dist` (`curl -s https://pypi.org/pypi/levain/json`). The
+page's `data-audited` baseline is the release its claims were last re-checked
+against, now 0.11.27; only that baseline is hand-moved
+(`grep -o 'data-audited="[^"]*"' index.html`), and only after a re-audit of the
+claims. Counts of the live codebase (lines, tests) are deliberately NOT printed
+on the page: a count rots the day after it is written, and the test count has
+to come from running the suite, never from grepping `def test_`. The figures
+that remain are exempt or derived: 96 → 549 is a fixed historical snapshot,
+`14 exported names` is `len(levain.kernel.__all__)`, and the deferral numbers
+(6 of 10, 0 of 10, p = 0.011) are the pre-registered result in
+`docs/evidence/deferral-probe.md`. If you add a number, add the command that
+derives it.
+
+A claim that was once true and is not now has to be removed, not corrected in
+place. The 0.5.x page said the firing tier had zero outward import edges and
+that standard credential stores were opt-in; neither holds at 0.11.27 (the
+tier imports outward in 26 places, and the credential deny is on by default).
 
 The `Boundaries, kept honest` section is load-bearing: it states what the kit
 does *not* do. Keep it in step with the `Boundaries, kept honest` section of the
