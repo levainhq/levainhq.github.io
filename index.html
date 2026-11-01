@@ -120,9 +120,9 @@
               <p class="row-note">
                 Only a signature from an enrolled key is. The queue checks each
                 answer against a signed authority log before the hook delivers
-                it, so an agent can't type approval on your behalf. A click in
-                the agent's own dialog still works as it always did, but it is
-                the agent's answer, unsigned. For the routine case you sign a standing grant: one agent, exact tools,
+                it, so an agent can't type approval on your behalf. In Claude
+                Code, a click in the agent's own dialog still works as it
+                always did, but it is the agent's answer, unsigned. For the routine case you sign a standing grant: one agent, exact tools,
                 one workspace, thirty days at most. Shell commands and edits to
                 the agent's own config and hooks are never answerable by a
                 grant.
@@ -239,7 +239,8 @@
             <article class="card">
               <h3>It holds what the agent does to your authority</h3>
               <p>
-                One consent queue across Claude Code and Codex. Each permission
+                One consent queue for Claude Code and Codex, kept in your Levain
+                home. Each permission
                 prompt either agent's hook receives is filed there. A signed
                 standing grant settles the routine. In away mode, everything a
                 grant doesn't cover waits for your signed decision. Desk or
@@ -434,14 +435,16 @@
             </div>
             <div class="rundown-item">
               <p>
-                <b>Signed answers need away mode.</b> With it off, the hook
+                <b>Signed answers to permission prompts need away mode.</b> With it off, the hook
                 asks only your grants, and with none matching, the agent's own
                 dialog asks you, as it would without Levain, except that an
                 edit of agent config or hooks no enrolled key can approve is
                 refused outside the agent's default dialog modes. On a Mac,
                 away mode turns on by itself after 10 minutes with no keyboard,
                 mouse or trackpad input and when a key you enrolled could sign
-                an answer; elsewhere only your word turns it on.
+                an answer (an install set up before that rule needs
+                <code>levain consent away auto</code> first); elsewhere only
+                your word turns it on.
               </p>
               <p class="rundown-meta">levain consent away on | off | auto</p>
             </div>

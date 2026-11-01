@@ -1,7 +1,7 @@
 # levainhq.com
 
 The product site for [Levain](https://github.com/levainhq/levain) — a consent
-queue and memory harness for Claude Code and Codex.
+queue and memory for Claude Code and Codex.
 
 Static, no build step. Deployed by GitHub Pages from `main`.
 
