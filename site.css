@@ -69,6 +69,9 @@ a {
   gap: var(--s-6);
 }
 .nav-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
   font-family: var(--font-display);
   font-variation-settings: "wdth" 84;
   font-weight: 700;
@@ -77,6 +80,17 @@ a {
   text-decoration: none;
   color: var(--text);
 }
+.nav-mark-img {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 6px;
+}
+/* Dark ground gets the transparent cut; the light theme gets the black tile
+   (the transparent cut washes to pastel on light). */
+.nav-mark-light { display: none; }
+:root:not([data-theme="dark"]) .nav-mark-dark { display: none; }
+:root:not([data-theme="dark"]) .nav-mark-light { display: block; }
 .nav-links {
   display: flex;
   gap: var(--s-6);
