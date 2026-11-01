@@ -7,7 +7,7 @@
     <title>Levain | Governed agents and memory you own, for Claude Code and Codex</title>
     <meta
       name="description"
-      content="Levain wraps Claude Code and Codex. One consent queue settled by signed standing grants or signed answers from you, an audit trail, and memory that persists across sessions in a store you own and can read."
+      content="Levain wraps Claude Code and Codex. One consent queue answered by signed standing grants and, in away mode, signed answers from you, an audit trail, and memory that persists across sessions in a store you own and can read."
     />
     <meta name="author" content="Phillip Clapham" />
     <meta name="theme-color" content="#100e0b" />
@@ -22,7 +22,7 @@
     <meta property="og:title" content="Levain | Agents that answer to you" />
     <meta
       property="og:description"
-      content="Governed from the first line: a consent queue and persistent memory for Claude Code and Codex. Signed grants, signed answers, an audit trail, and memory you own. Apache-2.0."
+      content="Governed from the first line: a consent queue and persistent memory for Claude Code and Codex. Signed grants, away-mode signed answers, an audit trail, and memory you own. Apache-2.0."
     />
     <meta property="og:image" content="https://levainhq.com/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -33,7 +33,7 @@
     <meta name="twitter:title" content="Levain | Agents that answer to you" />
     <meta
       name="twitter:description"
-      content="Governed from the first line: a consent queue and persistent memory for Claude Code and Codex. Signed grants, signed answers, an audit trail, and memory you own."
+      content="Governed from the first line: a consent queue and persistent memory for Claude Code and Codex. Signed grants, away-mode signed answers, an audit trail, and memory you own."
     />
 
     <script>
@@ -90,9 +90,9 @@
               <p class="hero-sub">
                 Levain wraps Claude Code and Codex. Each permission prompt
                 either one's hook receives goes into a single queue. A signed
-                standing grant settles the routine, and in away mode a signed
-                answer from you settles the rest, at your desk or on your
-                phone. Memory persists across sessions, in a
+                standing grant settles the routine, and in away mode the rest
+                waits for your signed answer, at your desk or on your phone.
+                Memory persists across sessions, in a
                 store you own and can read from outside any session. And a
                 directive before every prompt pushes back on the habits an
                 agent's training rewards. Apache-2.0. Python 3.12 and up.
@@ -120,8 +120,9 @@
               <p class="row-note">
                 Only a signature from an enrolled key is. The queue checks each
                 answer against a signed authority log before the hook delivers
-                it, so an agent can't type approval on your behalf. For the
-                routine case you sign a standing grant: one agent, exact tools,
+                it, so an agent can't type approval on your behalf. A click in
+                the agent's own dialog still works as it always did, but it is
+                the agent's answer, unsigned. For the routine case you sign a standing grant: one agent, exact tools,
                 one workspace, thirty days at most. Shell commands and edits to
                 the agent's own config and hooks are never answerable by a
                 grant.
@@ -180,7 +181,7 @@
 
           <div class="row">
             <div>
-              <p class="row-claim">A line of text loaded at launch changes what an agent does.</p>
+              <p class="row-claim">One line loaded at launch changed what an agent did.</p>
               <p class="row-note">
                 In my own harness, one stop instruction written too literally
                 made the agent stand down on work it should have kept doing 6
@@ -435,9 +436,12 @@
               <p>
                 <b>Signed answers need away mode.</b> With it off, the hook
                 asks only your grants, and with none matching, the agent's own
-                dialog asks you, as it would without Levain. On a Mac, away
-                mode turns on by itself after 10 minutes with no keyboard,
-                mouse or trackpad input; elsewhere only your word turns it on.
+                dialog asks you, as it would without Levain, except that an
+                edit of agent config or hooks no enrolled key can approve is
+                refused outside the agent's default dialog modes. On a Mac,
+                away mode turns on by itself after 10 minutes with no keyboard,
+                mouse or trackpad input and when a key you enrolled could sign
+                an answer; elsewhere only your word turns it on.
               </p>
               <p class="rundown-meta">levain consent away on | off | auto</p>
             </div>
