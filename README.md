@@ -22,8 +22,9 @@ not the product's.
 
 ## Content discipline
 
-Every claim on the page is sourced to a line in the Levain repo at a named
-release. The copy refresh of 2026-11-01 was derived against the `v0.11.27` tag
+Every claim about Levain on the page is sourced to a line in the Levain repo at a
+named release. First-person operator context (for example "I run 10 to 15 agents
+at a time") is the author's own account and is not sourced to the repo. The copy refresh of 2026-11-01 was derived against the `v0.11.27` tag
 (`f5962e35`): the README at that tag is the source of truth for the product
 description, and a claim the README does not make is checked against the code
 at the tag or removed. To re-derive: for each
