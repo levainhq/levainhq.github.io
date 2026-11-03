@@ -45,16 +45,23 @@
   // any failure, like the badge.
   var pinEls = document.querySelectorAll("[data-pin-of]");
 
+  function norm(n) {
+    return String(n).toLowerCase().replace(/[-_.]+/g, "-");
+  }
+
   function pinFor(requires, dep) {
     if (!Array.isArray(requires)) return null;
     for (var i = 0; i < requires.length; i++) {
       var r = String(requires[i]);
       if (r.indexOf(";") !== -1) continue; // extras / markers are not the pin
-      if (r.toLowerCase().indexOf(dep.toLowerCase()) !== 0) continue;
-      // Whole-name match: "anneal-memory-extras>=1" is another package.
-      if (/[\w.-]/.test(r.charAt(dep.length))) continue;
-      var spec = r.slice(dep.length).replace(/\s+/g, "");
-      if (!/^[<>=!~][\w.,<>=!~*+-]{0,40}$/.test(spec)) continue;
+      // Whole-name match under PEP 503 normalisation: "anneal-memory-extras"
+      // is another package, "anneal_memory" is this one.
+      var nm = /^[A-Za-z0-9][A-Za-z0-9._-]*/.exec(r);
+      if (!nm || norm(nm[0]) !== norm(dep)) continue;
+      var spec = r.slice(nm[0].length).replace(/\s+/g, "");
+      // The right package with a spec this cannot read: show nothing rather
+      // than a different line's bound.
+      if (!/^[<>=!~][\w.,<>=!~*+-]{0,40}$/.test(spec)) return null;
       // PyPI lists clauses in arbitrary order; show lower bound first.
       var parts = spec.split(",").sort(function (a, b) {
         return (a.charAt(0) === ">" ? 0 : 1) - (b.charAt(0) === ">" ? 0 : 1);
