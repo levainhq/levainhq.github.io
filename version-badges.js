@@ -51,8 +51,10 @@
       var r = String(requires[i]);
       if (r.indexOf(";") !== -1) continue; // extras / markers are not the pin
       if (r.toLowerCase().indexOf(dep.toLowerCase()) !== 0) continue;
+      // Whole-name match: "anneal-memory-extras>=1" is another package.
+      if (/[\w.-]/.test(r.charAt(dep.length))) continue;
       var spec = r.slice(dep.length).replace(/\s+/g, "");
-      if (!/^[<>=!~][\w.,<>=!~*+-]{0,40}$/.test(spec)) return null;
+      if (!/^[<>=!~][\w.,<>=!~*+-]{0,40}$/.test(spec)) continue;
       // PyPI lists clauses in arbitrary order; show lower bound first.
       var parts = spec.split(",").sort(function (a, b) {
         return (a.charAt(0) === ">" ? 0 : 1) - (b.charAt(0) === ">" ? 0 : 1);
