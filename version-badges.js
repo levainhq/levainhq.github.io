@@ -62,7 +62,7 @@
       // The right package with a spec this cannot read: show nothing rather
       // than a different line's bound.
       if (!/^[<>=!~][\w.,<>=!~*+-]{0,40}$/.test(spec)) return null;
-      // PyPI lists clauses in arbitrary order; show lower bound first.
+      // PyPI lists clauses in arbitrary order; '>'-leading clauses sort first and the rest keep PyPI's order.
       var parts = spec.split(",").sort(function (a, b) {
         return (a.charAt(0) === ">" ? 0 : 1) - (b.charAt(0) === ">" ? 0 : 1);
       });
