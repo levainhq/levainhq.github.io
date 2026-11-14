@@ -573,13 +573,13 @@ levain serve --write                 # ...and steer it, through the governed pat
           <h2 class="section-title">Build on it</h2>
           <p class="section-sub">One published seam</p>
           <p class="prose">
-            Writing your own surface over the substrate?
+            Writing your own surface over a substrate?
             <code>levain.kernel</code> is the published seam: the data model, the
             terminal and web drivers, and the governed write and action dispatch.
             Import one namespace instead of reaching into internals. Register
-            extra read-only panels or extra governed verbs and they ride the same
+            extra read-only panels or extra governed verbs through <code>make_server</code> and they ride the same
             auth, confirm and audit envelope as the built-in edits. It's a pure
-            re-export, and the governance lives in Levain's dispatch, not the surface.
+            re-export, and the confirm and audit governance lives in Levain's dispatch, not the surface.
           </p>
           <p class="card-meta">14 exported names · levain.kernel</p>
 
