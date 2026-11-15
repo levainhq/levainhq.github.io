@@ -175,7 +175,7 @@
               <span class="receipt-tag">Governed</span>
               <b>one write path, one audit envelope</b><br />
               zones <code>identity</code> / <code>operate</code> / <code>mind</code><br />
-              extensions ride the same auth, confirm and audit envelope
+              governed extensions ride the same auth, confirm and audit envelope
             </p>
           </div>
 
@@ -577,9 +577,12 @@ levain serve --write                 # ...and steer it, through the governed pat
             <code>levain.kernel</code> is the published seam: the data model, the
             terminal and web drivers, and the governed write and action dispatch.
             Import one namespace instead of reaching into internals. Register
-            extra read-only panels or extra governed verbs through <code>make_server</code> and they ride the same
-            auth, confirm and audit envelope as the built-in edits. It's a pure
-            re-export, and the confirm and audit governance lives in Levain's dispatch, not the surface.
+            extra read-only panels or extra governed verbs through <code>make_server</code>. A governed verb
+            rides the same auth and audit envelope as the built-in edits, with a confirm step unless the verb
+            opts out (<code>confirm_required</code> is on by default). A read-only panel is served behind the
+            cockpit's normal read gate and has no confirm or audit step of its own; if a panel offers an
+            <code>action</code>, the write goes through a registered governed verb, and that verb carries the
+            envelope. It's a pure re-export; the governance lives in the substrate, not the surface.
           </p>
           <p class="card-meta">14 exported names · levain.kernel</p>
 
