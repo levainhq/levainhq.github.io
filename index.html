@@ -175,7 +175,7 @@
               <span class="receipt-tag">Governed</span>
               <b>one write path, one audit envelope</b><br />
               zones <code>identity</code> / <code>operate</code> / <code>mind</code><br />
-              governed extensions ride the same auth, confirm and audit envelope
+              governed verbs ride the same auth and audit envelope, with confirm on by default
             </p>
           </div>
 
@@ -582,7 +582,7 @@ levain serve --write                 # ...and steer it, through the governed pat
             opts out (<code>confirm_required</code> is on by default). A read-only panel is served behind the
             cockpit's normal read gate and has no confirm or audit step of its own; if a panel offers an
             <code>action</code>, the write goes through a registered governed verb, and that verb carries the
-            envelope. It's a pure re-export; the governance lives in the substrate, not the surface.
+            envelope. It's a pure re-export; the governance lives in Levain's dispatch, not the surface.
           </p>
           <p class="card-meta">14 exported names · levain.kernel</p>
 
